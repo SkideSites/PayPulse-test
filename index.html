@@ -29,306 +29,281 @@
   }
   *,*::before,*::after{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
-  body{background:var(--bg); color:var(--text); font-family:'Inter',ui-sans-serif,system-ui,sans-serif; -webkit-font-smoothing:antialiased; transition:background .35s ease,color .35s ease; overflow-x:hidden;}
-  ::selection{background:#00E5A0; color:#0A0B0D;}
-  ::-webkit-scrollbar{width:10px;} ::-webkit-scrollbar-track{background:transparent;} ::-webkit-scrollbar-thumb{background:var(--scrollbar); border-radius:99px;}
-  a{color:inherit; text-decoration:none;} button{font:inherit; color:inherit; background:none; border:none; cursor:pointer;}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:'Inter',ui-sans-serif,system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased; transition:background .35s ease,color .35s ease;
+    overflow-x:hidden;
+  }
+  ::selection{ background:#00E5A0; color:#0A0B0D; }
+  ::-webkit-scrollbar{width:10px;}
+  ::-webkit-scrollbar-track{background:transparent;}
+  ::-webkit-scrollbar-thumb{background:var(--scrollbar); border-radius:99px;}
+  a{color:inherit; text-decoration:none;}
+  button{font:inherit; color:inherit; background:none; border:none; cursor:pointer;}
   :focus-visible{outline:2px solid var(--pulse); outline-offset:3px; border-radius:4px;}
   img,svg{display:block;}
-  .mono{font-family:'JetBrains Mono',ui-monospace,monospace;}
-  .container{width:100%; max-width:1180px; margin:0 auto; padding:0 24px;}
-  @media(min-width:1024px){.container{padding:0 48px;}}
-  .eyebrow{font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.18em; color:var(--pulse);}
-  .grid-bg{background-image:linear-gradient(to right, var(--grid-line) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px); background-size:56px 56px;}
-  .text-balance{text-wrap:balance;}
+  .mono{ font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .container{ width:100%; max-width:1180px; margin:0 auto; padding:0 24px; }
+  @media(min-width:1024px){ .container{ padding:0 48px; } }
+  .eyebrow{ font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.18em; color:var(--pulse); }
+  .grid-bg{ background-image:linear-gradient(to right, var(--grid-line) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px); background-size:56px 56px; }
+  .text-balance{ text-wrap:balance; }
 
-  .btn{position:relative; display:inline-flex; align-items:center; justify-content:center; gap:8px; font-weight:500; border-radius:999px; white-space:nowrap; cursor:pointer; transition:transform .25s ease, box-shadow .25s ease, background-color .25s ease, border-color .25s ease; user-select:none;}
-  .btn:active{transform:scale(.97);}
-  .btn-lg{padding:14px 28px; font-size:15px;}
-  .btn-md{padding:10px 20px; font-size:14px;}
-  .btn-primary{background:var(--pulse); color:#0A0B0D;}
-  .btn-primary:hover{background:var(--pulse-glow); transform:scale(1.035); box-shadow:0 0 28px 4px rgba(0,229,160,.35);}
-  .btn-secondary{background:var(--card-bg); color:var(--text); border:1px solid var(--line);}
-  .btn-secondary:hover{border-color:var(--text-35); transform:scale(1.02);}
-  .btn-full{width:100%;}
-  .icon{width:16px; height:16px; flex:none;}
+  /* ---------- Buttons ---------- */
+  .btn{ position:relative; display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    font-weight:500; border-radius:999px; white-space:nowrap; cursor:pointer;
+    transition:transform .25s ease, box-shadow .25s ease, background-color .25s ease, border-color .25s ease; user-select:none; }
+  .btn:active{ transform:scale(.97); }
+  .btn-lg{ padding:14px 28px; font-size:15px; }
+  .btn-md{ padding:10px 20px; font-size:14px; }
+  .btn-primary{ background:var(--pulse); color:#0A0B0D; }
+  .btn-primary:hover{ background:var(--pulse-glow); transform:scale(1.035); box-shadow:0 0 28px 4px rgba(0,229,160,.35); }
+  .btn-secondary{ background:var(--card-bg); color:var(--text); border:1px solid var(--line); }
+  .btn-secondary:hover{ border-color:var(--text-35); transform:scale(1.02); }
+  .btn-full{ width:100%; }
+  .icon{ width:16px; height:16px; flex:none; }
 
-  header{position:fixed; inset:0 0 auto 0; z-index:50; border-bottom:1px solid transparent; transition:all .3s ease;}
-  header.scrolled{background:var(--header-bg); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom-color:var(--line);}
-  .nav-row{height:64px; display:flex; align-items:center; justify-content:space-between;}
-  .logo{display:flex; align-items:center; gap:8px;}
-  .logo-dot{position:relative; width:20px; height:20px; display:flex; align-items:center; justify-content:center;}
-  .logo-dot span{position:absolute; width:8px; height:8px; border-radius:99px; background:var(--pulse);}
-  .logo-dot span.ping{animation:ping 2s cubic-bezier(0,0,.2,1) infinite; opacity:.6;}
-  @keyframes ping{75%,100%{transform:scale(2.4); opacity:0;}}
-  .logo-text{font-family:'JetBrains Mono',monospace; font-size:15px; font-weight:500; letter-spacing:-.02em;}
-  nav.desktop-nav{display:none; align-items:center; gap:32px;}
-  nav.desktop-nav a{font-size:14px; color:var(--text-60); transition:color .2s;}
-  nav.desktop-nav a:hover{color:var(--text);}
-  .header-right{display:none; align-items:center; gap:4px;}
-  @media(min-width:768px){nav.desktop-nav,.header-right{display:flex;} .mobile-toggle{display:none !important;}}
-  .icon-btn{width:36px; height:36px; display:flex; align-items:center; justify-content:center; border-radius:99px; transition:background .2s; color:var(--text-60);}
-  .icon-btn:hover{background:var(--hover-tint);}
-  .lang-wrap{position:relative;}
-  .lang-btn{display:flex; align-items:center; gap:6px; border-radius:99px; padding:8px 12px; font-size:14px; color:var(--text-60); transition:background .2s;}
-  .lang-btn:hover{background:var(--hover-tint);}
-  .lang-menu{position:absolute; right:0; top:calc(100% + 8px); width:150px; background:var(--bg-soft); border:1px solid var(--line); border-radius:14px; padding:4px; box-shadow:0 20px 50px -10px rgba(0,0,0,.4); backdrop-filter:blur(20px); opacity:0; visibility:hidden; transform:translateY(-6px) scale(.97); transition:all .16s ease;}
-  .lang-menu.open{opacity:1; visibility:visible; transform:translateY(0) scale(1);}
-  .lang-item{width:100%; display:flex; align-items:center; justify-content:space-between; padding:8px 12px; border-radius:8px; font-size:14px; text-align:left; transition:background .15s;}
-  .lang-item:hover{background:var(--hover-tint);}
-  .lang-item svg{width:14px; height:14px; color:var(--pulse); opacity:0;}
-  .lang-item.active svg{opacity:1;}
-  .login-link{margin-left:6px; padding:8px 12px; font-size:14px; color:var(--text-60); transition:color .2s;}
-  .login-link:hover{color:var(--text);}
-  .mobile-toggle{width:36px; height:36px; display:flex; align-items:center; justify-content:center;}
-  .mobile-menu{overflow:hidden; max-height:0; border-bottom:1px solid transparent; background:var(--header-bg); backdrop-filter:blur(20px); transition:max-height .3s ease, border-color .3s;}
-  .mobile-menu.open{max-height:480px; border-bottom-color:var(--line);}
-  .mobile-menu-inner{padding:8px 24px 20px; display:flex; flex-direction:column; gap:2px;}
-  .mobile-menu-inner a{padding:10px 0; font-size:14px; color:var(--text-60);}
-  .mobile-row{display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--line); padding-top:12px; margin-top:8px;}
+  /* ---------- Header ---------- */
+  header{ position:fixed; inset:0 0 auto 0; z-index:50; border-bottom:1px solid transparent; transition:all .3s ease; }
+  header.scrolled{ background:var(--header-bg); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom-color:var(--line); }
+  .nav-row{ height:64px; display:flex; align-items:center; justify-content:space-between; }
+  .logo{ display:flex; align-items:center; gap:8px; }
+  .logo-dot{ position:relative; width:20px; height:20px; display:flex; align-items:center; justify-content:center; }
+  .logo-dot span{ position:absolute; width:8px; height:8px; border-radius:99px; background:var(--pulse); }
+  .logo-dot span.ping{ animation:ping 2s cubic-bezier(0,0,.2,1) infinite; opacity:.6; }
+  @keyframes ping{ 75%,100%{ transform:scale(2.4); opacity:0; } }
+  .logo-text{ font-family:'JetBrains Mono',monospace; font-size:15px; font-weight:500; letter-spacing:-.02em; }
+  nav.desktop-nav{ display:none; align-items:center; gap:32px; }
+  nav.desktop-nav a{ font-size:14px; color:var(--text-60); transition:color .2s; }
+  nav.desktop-nav a:hover{ color:var(--text); }
+  .header-right{ display:none; align-items:center; gap:4px; }
+  @media(min-width:768px){ nav.desktop-nav, .header-right{ display:flex; } .mobile-toggle{ display:none !important; } }
+  .icon-btn{ width:36px; height:36px; display:flex; align-items:center; justify-content:center; border-radius:99px; transition:background .2s; color:var(--text-60); }
+  .icon-btn:hover{ background:var(--hover-tint); }
+  .lang-wrap{ position:relative; }
+  .lang-btn{ display:flex; align-items:center; gap:6px; border-radius:99px; padding:8px 12px; font-size:14px; color:var(--text-60); transition:background .2s; }
+  .lang-btn:hover{ background:var(--hover-tint); }
+  .lang-menu{ position:absolute; right:0; top:calc(100% + 8px); width:150px; background:var(--bg-soft); border:1px solid var(--line); border-radius:14px; padding:4px; box-shadow:0 20px 50px -10px rgba(0,0,0,.4); backdrop-filter:blur(20px); opacity:0; visibility:hidden; transform:translateY(-6px) scale(.97); transition:all .16s ease; }
+  .lang-menu.open{ opacity:1; visibility:visible; transform:translateY(0) scale(1); }
+  .lang-item{ width:100%; display:flex; align-items:center; justify-content:space-between; padding:8px 12px; border-radius:8px; font-size:14px; text-align:left; transition:background .15s; }
+  .lang-item:hover{ background:var(--hover-tint); }
+  .lang-item svg{ width:14px; height:14px; color:var(--pulse); opacity:0; }
+  .lang-item.active svg{ opacity:1; }
+  .login-link{ margin-left:6px; padding:8px 12px; font-size:14px; color:var(--text-60); transition:color .2s; }
+  .login-link:hover{ color:var(--text); }
+  .mobile-toggle{ width:36px; height:36px; display:flex; align-items:center; justify-content:center; }
+  .mobile-menu{ overflow:hidden; max-height:0; border-bottom:1px solid transparent; background:var(--header-bg); backdrop-filter:blur(20px); transition:max-height .3s ease, border-color .3s; }
+  .mobile-menu.open{ max-height:420px; border-bottom-color:var(--line); }
+  .mobile-menu-inner{ padding:8px 24px 20px; display:flex; flex-direction:column; gap:2px; }
+  .mobile-menu-inner a{ padding:10px 0; font-size:14px; color:var(--text-60); }
+  .mobile-row{ display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--line); padding-top:12px; margin-top:8px; }
 
-  .reveal{opacity:0; transform:translateY(26px); transition:opacity .65s cubic-bezier(.21,.47,.32,.98), transform .65s cubic-bezier(.21,.47,.32,.98);}
-  .reveal.in-view{opacity:1; transform:translateY(0);}
-  .reveal.d1{transition-delay:.06s;} .reveal.d2{transition-delay:.12s;} .reveal.d3{transition-delay:.18s;}
-  .stagger-item{opacity:0; transform:translateY(26px); transition:opacity .55s cubic-bezier(.21,.47,.32,.98), transform .55s cubic-bezier(.21,.47,.32,.98);}
-  .stagger-group.in-view .stagger-item:nth-child(1){transition-delay:.05s;}
-  .stagger-group.in-view .stagger-item:nth-child(2){transition-delay:.15s;}
-  .stagger-group.in-view .stagger-item:nth-child(3){transition-delay:.25s;}
-  .stagger-group.in-view .stagger-item:nth-child(4){transition-delay:.35s;}
-  .stagger-group.in-view .stagger-item{opacity:1; transform:translateY(0);}
-  .pulse-svg path{stroke-dasharray:1300; stroke-dashoffset:1300; transition:stroke-dashoffset 2.2s cubic-bezier(.21,.47,.32,.98), opacity .4s; opacity:0;}
-  .pulse-svg.in-view path{stroke-dashoffset:0; opacity:1;}
+  /* ---------- Reveal / Stagger ---------- */
+  .reveal{ opacity:0; transform:translateY(26px); transition:opacity .65s cubic-bezier(.21,.47,.32,.98), transform .65s cubic-bezier(.21,.47,.32,.98); }
+  .reveal.in-view{ opacity:1; transform:translateY(0); }
+  .reveal.d1{ transition-delay:.06s; } .reveal.d2{ transition-delay:.12s; } .reveal.d3{ transition-delay:.18s; }
+  .stagger-item{ opacity:0; transform:translateY(26px); transition:opacity .55s cubic-bezier(.21,.47,.32,.98), transform .55s cubic-bezier(.21,.47,.32,.98); }
+  .stagger-group.in-view .stagger-item:nth-child(1){ transition-delay:.05s; }
+  .stagger-group.in-view .stagger-item:nth-child(2){ transition-delay:.15s; }
+  .stagger-group.in-view .stagger-item:nth-child(3){ transition-delay:.25s; }
+  .stagger-group.in-view .stagger-item:nth-child(4){ transition-delay:.35s; }
+  .stagger-group.in-view .stagger-item{ opacity:1; transform:translateY(0); }
 
-  #hero{position:relative; padding:168px 0 96px; overflow:hidden;}
-  .hero-glow{position:absolute; inset:0; z-index:-1; pointer-events:none;}
-  .hero-glow .blob1{position:absolute; left:50%; top:-10%; width:780px; height:480px; transform:translateX(-50%); border-radius:99px; background:rgba(0,229,160,.13); filter:blur(120px);}
-  .hero-glow .blob2{position:absolute; right:8%; top:18%; width:280px; height:280px; border-radius:99px; background:rgba(255,107,74,.07); filter:blur(100px);}
-  .hero-pulse-bg{position:absolute; left:0; right:0; top:56%; height:96px; z-index:-1; opacity:.32;}
-  .hero-inner{display:flex; flex-direction:column; align-items:center; text-align:center;}
-  .hero-badge{display:inline-flex; align-items:center; gap:8px; border:1px solid var(--line); background:var(--card-bg); padding:7px 16px; border-radius:99px; margin-bottom:26px; backdrop-filter:blur(6px);}
-  .hero-badge .dot{width:6px; height:6px; border-radius:99px; background:var(--pulse);}
-  h1.hero-title{max-width:880px; font-size:clamp(2.6rem,6vw,4.6rem); font-weight:650; line-height:1.06; letter-spacing:-.04em;}
-  .reveal-line{display:block; overflow:hidden;}
-  .reveal-line span{display:block; transform:translateY(110%); opacity:0; transition:transform .8s cubic-bezier(.21,.47,.32,.98), opacity .8s ease;}
-  .reveal-line.in-view span{transform:translateY(0); opacity:1;}
-  .reveal-line.muted{color:var(--text-35);}
-  .reveal-line.line2{transition-delay:.1s;}
-  .hero-sub{margin-top:28px; max-width:560px; font-size:18px; color:var(--text-60);}
-  .hero-ctas{margin-top:36px; display:flex; flex-direction:column; gap:12px; align-items:center;}
-  @media(min-width:640px){.hero-ctas{flex-direction:row;}}
-  .hero-proof{margin-top:64px; width:100%;}
-  .proof-label{margin-bottom:24px; font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.18em; color:var(--text-35);}
-  .stats-row{max-width:480px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; border-top:1px solid var(--line); padding-top:24px;}
-  .stat-value{font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:600; letter-spacing:-.03em;}
-  .stat-label{margin-top:4px; font-size:11px; line-height:1.3; color:var(--text-45);}
+  /* ---------- Pulse line ---------- */
+  .pulse-svg path{ stroke-dasharray:1300; stroke-dashoffset:1300; transition:stroke-dashoffset 2.2s cubic-bezier(.21,.47,.32,.98), opacity .4s; opacity:0; }
+  .pulse-svg.in-view path{ stroke-dashoffset:0; opacity:1; }
 
-  .dash-wrap{position:relative; max-width:760px; margin:80px auto 0; opacity:0; transform:translateY(40px); transition:opacity .9s ease, transform .9s cubic-bezier(.21,.47,.32,.98);}
-  .dash-wrap.in-view{opacity:1; transform:translateY(0);}
-  .dash-glow{position:absolute; inset:-40px; z-index:-1; border-radius:40px; background:rgba(0,229,160,.1); filter:blur(60px);}
-  .dash-card{overflow:hidden; border-radius:20px; border:1px solid var(--line); background:var(--bg-soft); box-shadow:0 30px 80px -20px rgba(0,0,0,.4); backdrop-filter:blur(20px);}
-  .dash-chrome{display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--line); padding:12px 16px;}
-  .dash-chrome span.d{width:10px; height:10px; border-radius:99px;}
-  .dash-chrome .url{margin-left:8px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-35);}
-  .dash-grid{display:grid; grid-template-columns:1.3fr 1fr;}
-  @media(max-width:640px){.dash-grid{grid-template-columns:1fr;}}
-  .dash-col{padding:20px; background:var(--bg-soft);}
-  .dash-col+.dash-col{border-left:1px solid var(--line);}
-  @media(max-width:640px){.dash-col+.dash-col{border-left:none; border-top:1px solid var(--line);}}
-  .dash-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;}
-  .dash-head h3{font-size:14px; font-weight:500;}
-  .dash-head p{font-size:12px; color:var(--text-45); margin-top:2px;}
-  .live-badge{display:flex; align-items:center; gap:6px; border-radius:99px; background:rgba(0,229,160,.1); padding:4px 10px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--pulse);}
-  .live-dot{width:6px; height:6px; border-radius:99px; background:var(--pulse); animation:pulseDot 1.6s ease-in-out infinite;}
-  @keyframes pulseDot{0%,100%{opacity:1;} 50%{opacity:.3;}}
-  .row-head{display:grid; grid-template-columns:1.4fr .8fr .8fr .7fr; gap:8px; padding:0 8px 8px; font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.04em; color:var(--text-25);}
-  .inv-row{display:grid; grid-template-columns:1.4fr .8fr .8fr .7fr; align-items:center; gap:8px; padding:9px 8px; border-radius:10px; font-size:12px; transition:background .2s;}
-  .inv-row:hover{background:var(--hover-tint);}
-  .inv-row .name{font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
-  .inv-row .amt{font-family:'JetBrains Mono',monospace; color:var(--text-60);}
-  .badge{display:inline-block; padding:2px 9px; border-radius:99px; font-size:10px; font-weight:500;}
-  .badge.paid{background:rgba(0,229,160,.15); color:var(--pulse);}
-  .badge.pending{background:rgba(251,191,36,.15); color:var(--amber);}
-  .badge.overdue{background:rgba(255,107,74,.15); color:var(--ember);}
-  .inv-row .last{text-align:right; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-35);}
-  .dash-stat-top{display:flex; align-items:center; justify-content:space-between;}
-  .dash-stat-top span.label{font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.04em; color:var(--text-45);}
-  .dash-stat-top span.delta{display:flex; align-items:center; gap:2px; font-size:10px; font-weight:500; color:var(--pulse);}
-  .dash-stat-value{margin-top:6px; font-family:'JetBrains Mono',monospace; font-size:32px; font-weight:600; letter-spacing:-.03em;}
-  .dash-stat-value sup{font-size:17px; color:var(--text-45); font-weight:400;}
-  .dash-chart{height:64px; margin:16px 0;}
-  .dash-footer{display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--line); padding-top:12px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-45);}
-  .dash-footer .ld{width:6px; height:6px; border-radius:99px; background:var(--pulse);}
+  /* ---------- Hero ---------- */
+  #hero{ position:relative; padding:168px 0 96px; overflow:hidden; }
+  .hero-glow{ position:absolute; inset:0; z-index:-1; pointer-events:none; }
+  .hero-glow .blob1{ position:absolute; left:50%; top:-10%; width:780px; height:480px; transform:translateX(-50%); border-radius:99px; background:rgba(0,229,160,.13); filter:blur(120px); }
+  .hero-glow .blob2{ position:absolute; right:8%; top:18%; width:280px; height:280px; border-radius:99px; background:rgba(255,107,74,.07); filter:blur(100px); }
+  .hero-pulse-bg{ position:absolute; left:0; right:0; top:56%; height:96px; z-index:-1; opacity:.32; }
+  .hero-inner{ display:flex; flex-direction:column; align-items:center; text-align:center; }
+  .hero-badge{ display:inline-flex; align-items:center; gap:8px; border:1px solid var(--line); background:var(--card-bg); padding:7px 16px; border-radius:99px; margin-bottom:26px; backdrop-filter:blur(6px); }
+  .hero-badge .dot{ width:6px; height:6px; border-radius:99px; background:var(--pulse); }
+  h1.hero-title{ max-width:880px; font-size:clamp(2.6rem,6vw,4.6rem); font-weight:650; line-height:1.06; letter-spacing:-.04em; }
+  .reveal-line{ display:block; overflow:hidden; }
+  .reveal-line span{ display:block; transform:translateY(110%); opacity:0; transition:transform .8s cubic-bezier(.21,.47,.32,.98), opacity .8s ease; }
+  .reveal-line.in-view span{ transform:translateY(0); opacity:1; }
+  .reveal-line.muted{ color:var(--text-35); }
+  .reveal-line.line2{ transition-delay:.1s; }
+  .hero-sub{ margin-top:28px; max-width:560px; font-size:18px; color:var(--text-60); }
+  .hero-ctas{ margin-top:36px; display:flex; flex-direction:column; gap:12px; align-items:center; }
+  @media(min-width:640px){ .hero-ctas{ flex-direction:row; } }
+  .hero-proof{ margin-top:64px; width:100%; }
+  .proof-label{ margin-bottom:24px; font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.18em; color:var(--text-35); }
+  .stats-row{ max-width:480px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; border-top:1px solid var(--line); padding-top:24px; }
+  .stat-value{ font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:600; letter-spacing:-.03em; }
+  .stat-label{ margin-top:4px; font-size:11px; line-height:1.3; color:var(--text-45); }
 
-  section{position:relative; padding:96px 0;}
-  section.bordered{border-top:1px solid var(--line);}
-  @media(min-width:640px){section{padding:128px 0;}}
-  h2.section-title{margin-top:16px; max-width:680px; font-size:clamp(1.9rem,3.4vw,2.85rem); font-weight:650; line-height:1.15; letter-spacing:-.025em;}
-  p.section-sub{margin-top:16px; max-width:560px; color:var(--text-60);}
-  .center{text-align:center; margin-left:auto; margin-right:auto;}
+  /* ---------- Dashboard preview ---------- */
+  .dash-wrap{ position:relative; max-width:760px; margin:80px auto 0; opacity:0; transform:translateY(40px); transition:opacity .9s ease, transform .9s cubic-bezier(.21,.47,.32,.98); }
+  .dash-wrap.in-view{ opacity:1; transform:translateY(0); }
+  .dash-glow{ position:absolute; inset:-40px; z-index:-1; border-radius:40px; background:rgba(0,229,160,.1); filter:blur(60px); }
+  .dash-card{ overflow:hidden; border-radius:20px; border:1px solid var(--line); background:var(--bg-soft); box-shadow:0 30px 80px -20px rgba(0,0,0,.4); backdrop-filter:blur(20px); }
+  .dash-chrome{ display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--line); padding:12px 16px; }
+  .dash-chrome span.d{ width:10px; height:10px; border-radius:99px; }
+  .dash-chrome .url{ margin-left:8px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-35); }
+  .dash-grid{ display:grid; grid-template-columns:1.3fr 1fr; }
+  @media(max-width:640px){ .dash-grid{ grid-template-columns:1fr; } }
+  .dash-col{ padding:20px; background:var(--bg-soft); }
+  .dash-col + .dash-col{ border-left:1px solid var(--line); }
+  @media(max-width:640px){ .dash-col + .dash-col{ border-left:none; border-top:1px solid var(--line); } }
+  .dash-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+  .dash-head h3{ font-size:14px; font-weight:500; }
+  .dash-head p{ font-size:12px; color:var(--text-45); margin-top:2px; }
+  .live-badge{ display:flex; align-items:center; gap:6px; border-radius:99px; background:rgba(0,229,160,.1); padding:4px 10px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--pulse); }
+  .live-dot{ width:6px; height:6px; border-radius:99px; background:var(--pulse); animation:pulseDot 1.6s ease-in-out infinite; }
+  @keyframes pulseDot{ 0%,100%{ opacity:1; } 50%{ opacity:.3; } }
+  .row-head{ display:grid; grid-template-columns:1.4fr .8fr .8fr .7fr; gap:8px; padding:0 8px 8px; font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.04em; color:var(--text-25); }
+  .inv-row{ display:grid; grid-template-columns:1.4fr .8fr .8fr .7fr; align-items:center; gap:8px; padding:9px 8px; border-radius:10px; font-size:12px; transition:background .2s; }
+  .inv-row:hover{ background:var(--hover-tint); }
+  .inv-row .name{ font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .inv-row .amt{ font-family:'JetBrains Mono',monospace; color:var(--text-60); }
+  .badge{ display:inline-block; padding:2px 9px; border-radius:99px; font-size:10px; font-weight:500; }
+  .badge.paid{ background:rgba(0,229,160,.15); color:var(--pulse); }
+  .badge.pending{ background:rgba(251,191,36,.15); color:var(--amber); }
+  .badge.overdue{ background:rgba(255,107,74,.15); color:var(--ember); }
+  .inv-row .last{ text-align:right; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-35); }
+  .dash-stat-top{ display:flex; align-items:center; justify-content:space-between; }
+  .dash-stat-top span.label{ font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.04em; color:var(--text-45); }
+  .dash-stat-top span.delta{ display:flex; align-items:center; gap:2px; font-size:10px; font-weight:500; color:var(--pulse); }
+  .dash-stat-value{ margin-top:6px; font-family:'JetBrains Mono',monospace; font-size:32px; font-weight:600; letter-spacing:-.03em; }
+  .dash-stat-value sup{ font-size:17px; color:var(--text-45); font-weight:400; }
+  .dash-chart{ height:64px; margin:16px 0; }
+  .dash-footer{ display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--line); padding-top:12px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-45); }
+  .dash-footer .ld{ width:6px; height:6px; border-radius:99px; background:var(--pulse); }
 
-  .card{height:100%; border-radius:18px; border:1px solid var(--line); background:var(--card-bg); padding:28px; transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;}
-  .card:hover{transform:translateY(-5px); border-color:var(--text-25); box-shadow:0 24px 50px -22px rgba(0,0,0,.3);}
-  .card-icon{width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:12px; background:rgba(0,229,160,.1); color:var(--pulse); transition:transform .3s;}
-  .card:hover .card-icon{transform:scale(1.1);}
-  .card-icon.ember{background:rgba(255,107,74,.1); color:var(--ember);}
-  .card h3{margin-top:18px; font-size:15px; font-weight:500;}
-  .card p{margin-top:10px; font-size:14px; line-height:1.6; color:var(--text-60);}
-  .cards-3{margin-top:48px; display:grid; gap:18px; grid-template-columns:1fr;}
-  @media(min-width:768px){.cards-3{grid-template-columns:repeat(3,1fr);}}
-  .cards-2{margin-top:52px; display:grid; gap:18px; grid-template-columns:1fr;}
-  @media(min-width:640px){.cards-2{grid-template-columns:repeat(2,1fr);}}
+  /* ---------- Generic section ---------- */
+  section{ position:relative; padding:96px 0; }
+  section.bordered{ border-top:1px solid var(--line); }
+  @media(min-width:640px){ section{ padding:128px 0; } }
+  h2.section-title{ margin-top:16px; max-width:680px; font-size:clamp(1.9rem,3.4vw,2.85rem); font-weight:650; line-height:1.15; letter-spacing:-.025em; }
+  p.section-sub{ margin-top:16px; max-width:560px; color:var(--text-60); }
+  .center{ text-align:center; margin-left:auto; margin-right:auto; }
 
-  .solution-grid{display:grid; gap:60px; grid-template-columns:1fr; align-items:center;}
-  @media(min-width:1024px){.solution-grid{grid-template-columns:1fr 1fr;}}
-  .point-row{display:flex; gap:16px; margin-top:28px;}
-  .point-icon{width:36px; height:36px; flex:none; display:flex; align-items:center; justify-content:center; border-radius:99px; background:rgba(0,229,160,.1); color:var(--pulse);}
-  .point-row h3{font-size:15px; font-weight:500;}
-  .point-row p{margin-top:6px; font-size:14px; line-height:1.6; color:var(--text-60);}
-  .panel{border-radius:18px; border:1px solid var(--line); background:var(--card-bg); padding:24px; margin-bottom:16px;}
-  .panel.active{border-color:rgba(0,229,160,.35); background:rgba(0,229,160,.06); box-shadow:0 0 60px -20px rgba(0,229,160,.35);}
-  .panel-top{display:flex; align-items:center; justify-content:space-between;}
-  .panel-top .lbl{font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--text-45);}
-  .panel.active .lbl{color:var(--pulse);}
-  .panel-dot{width:6px; height:6px; border-radius:99px; background:var(--ember); opacity:.7;}
-  .panel.active .panel-dot{background:var(--pulse); opacity:1; animation:pulseDot 1.6s ease-in-out infinite;}
-  .panel-chart{height:64px; margin-top:14px; opacity:.75;}
-  .panel.active .panel-chart{opacity:1;}
+  /* ---------- Cards grid ---------- */
+  .card{ height:100%; border-radius:18px; border:1px solid var(--line); background:var(--card-bg); padding:28px; transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
+  .card:hover{ transform:translateY(-5px); border-color:var(--text-25); box-shadow:0 24px 50px -22px rgba(0,0,0,.3); }
+  .card-icon{ width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:12px; background:rgba(0,229,160,.1); color:var(--pulse); transition:transform .3s; }
+  .card:hover .card-icon{ transform:scale(1.1); }
+  .card-icon.ember{ background:rgba(255,107,74,.1); color:var(--ember); }
+  .card h3{ margin-top:18px; font-size:15px; font-weight:500; }
+  .card p{ margin-top:10px; font-size:14px; line-height:1.6; color:var(--text-60); }
+  .cards-3{ margin-top:48px; display:grid; gap:18px; grid-template-columns:1fr; }
+  @media(min-width:768px){ .cards-3{ grid-template-columns:repeat(3,1fr); } }
+  .cards-2{ margin-top:52px; display:grid; gap:18px; grid-template-columns:1fr; }
+  @media(min-width:640px){ .cards-2{ grid-template-columns:repeat(2,1fr); } }
 
-  .steps-wrap{position:relative; margin-top:64px; display:grid; gap:40px; grid-template-columns:1fr;}
-  @media(min-width:768px){.steps-wrap{grid-template-columns:repeat(3,1fr); gap:24px;}}
-  .step-line{display:none; position:absolute; left:0; right:0; top:24px; height:1px; background:linear-gradient(to right, transparent, var(--line), transparent);}
-  @media(min-width:768px){.step-line{display:block;}}
-  .step-top{display:flex; align-items:center; gap:12px;}
-  .step-num{position:relative; z-index:1; width:48px; height:48px; flex:none; display:flex; align-items:center; justify-content:center; border-radius:99px; border:1px solid var(--line); background:var(--bg); font-family:'JetBrains Mono',monospace; font-size:14px; color:var(--pulse);}
-  .step-rule{flex:1; height:1px; background:var(--line);}
-  @media(min-width:768px){.step-rule{display:none;}}
-  .step-card h3{margin-top:20px; font-size:17px; font-weight:500;}
-  .step-card p{margin-top:8px; font-size:14px; line-height:1.6; color:var(--text-60);}
+  /* ---------- Solution ---------- */
+  .solution-grid{ display:grid; gap:60px; grid-template-columns:1fr; align-items:center; }
+  @media(min-width:1024px){ .solution-grid{ grid-template-columns:1fr 1fr; } }
+  .point-row{ display:flex; gap:16px; margin-top:28px; }
+  .point-icon{ width:36px; height:36px; flex:none; display:flex; align-items:center; justify-content:center; border-radius:99px; background:rgba(0,229,160,.1); color:var(--pulse); }
+  .point-row h3{ font-size:15px; font-weight:500; }
+  .point-row p{ margin-top:6px; font-size:14px; line-height:1.6; color:var(--text-60); }
+  .panel{ border-radius:18px; border:1px solid var(--line); background:var(--card-bg); padding:24px; margin-bottom:16px; }
+  .panel.active{ border-color:rgba(0,229,160,.35); background:rgba(0,229,160,.06); box-shadow:0 0 60px -20px rgba(0,229,160,.35); }
+  .panel-top{ display:flex; align-items:center; justify-content:space-between; }
+  .panel-top .lbl{ font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--text-45); }
+  .panel.active .lbl{ color:var(--pulse); }
+  .panel-dot{ width:6px; height:6px; border-radius:99px; background:var(--ember); opacity:.7; }
+  .panel.active .panel-dot{ background:var(--pulse); opacity:1; animation:pulseDot 1.6s ease-in-out infinite; }
+  .panel-chart{ height:64px; margin-top:14px; opacity:.75; }
+  .panel.active .panel-chart{ opacity:1; }
 
-  .tones-title{text-align:center; font-family:'JetBrains Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:.18em; color:var(--text-45);}
-  .tones-grid{margin-top:32px; display:grid; gap:18px; grid-template-columns:1fr;}
-  @media(min-width:768px){.tones-grid{grid-template-columns:repeat(3,1fr);}}
-  .tone-card{position:relative; height:100%; overflow:hidden; border-radius:18px; border:1px solid var(--line); background:var(--card-bg); padding:24px 24px 24px 26px;}
-  .tone-bar{position:absolute; left:0; top:0; height:100%; width:3px;}
-  .tone-bar.soft{background:var(--pulse);}
-  .tone-bar.normal{background:var(--amber);}
-  .tone-bar.firm{background:var(--ember);}
-  .tone-head{display:flex; align-items:center; gap:8px; color:var(--text-45);}
-  .tone-head span{font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.06em;}
-  .tone-card p{margin-top:16px; font-size:14px; line-height:1.6; color:var(--text-60);}
+  /* ---------- How it works ---------- */
+  .steps-wrap{ position:relative; margin-top:64px; display:grid; gap:40px; grid-template-columns:1fr; }
+  @media(min-width:768px){ .steps-wrap{ grid-template-columns:repeat(3,1fr); gap:24px; } }
+  .step-line{ display:none; position:absolute; left:0; right:0; top:24px; height:1px; background:linear-gradient(to right, transparent, var(--line), transparent); }
+  @media(min-width:768px){ .step-line{ display:block; } }
+  .step-top{ display:flex; align-items:center; gap:12px; }
+  .step-num{ position:relative; z-index:1; width:48px; height:48px; flex:none; display:flex; align-items:center; justify-content:center; border-radius:99px; border:1px solid var(--line); background:var(--bg); font-family:'JetBrains Mono',monospace; font-size:14px; color:var(--pulse); }
+  .step-rule{ flex:1; height:1px; background:var(--line); }
+  @media(min-width:768px){ .step-rule{ display:none; } }
+  .step-card h3{ margin-top:20px; font-size:17px; font-weight:500; }
+  .step-card p{ margin-top:8px; font-size:14px; line-height:1.6; color:var(--text-60); }
 
-  .pricing-grid{margin-top:64px; display:grid; gap:24px; grid-template-columns:1fr; align-items:end;}
-  @media(min-width:1024px){.pricing-grid{grid-template-columns:repeat(3,1fr);}}
-  .plan{position:relative; height:100%; border-radius:18px; border:1px solid var(--line); background:var(--card-bg); padding:32px; transition:transform .3s ease;}
-  .plan:hover{transform:translateY(-6px);}
-  .plan.popular{border-color:rgba(0,229,160,.4); background:rgba(0,229,160,.05); box-shadow:0 30px 70px -30px rgba(0,229,160,.4);}
-  @media(min-width:1024px){.plan.popular{transform:scale(1.05);} .plan.popular:hover{transform:scale(1.05) translateY(-6px);}}
-  .popular-badge{position:absolute; top:-13px; left:50%; transform:translateX(-50%); background:var(--pulse); color:#0A0B0D; padding:4px 12px; border-radius:99px; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.06em;}
-  .plan-name{font-size:14px; color:var(--text-60);}
-  .plan-price{margin-top:10px; display:flex; align-items:baseline; gap:4px;}
-  .plan-price .amt{font-family:'JetBrains Mono',monospace; font-size:38px; font-weight:600; letter-spacing:-.03em;}
-  .plan-price .per{font-size:14px; color:var(--text-45);}
-  .plan-tagline{margin-top:10px; font-size:14px; line-height:1.6; color:var(--text-60);}
-  .plan-feats{margin-top:28px; display:flex; flex-direction:column; gap:11px;}
-  .plan-feats li{display:flex; gap:10px; align-items:flex-start; font-size:14px; color:var(--text-60); list-style:none;}
-  .plan-feats svg{width:15px; height:15px; flex:none; margin-top:2px; color:var(--pulse);}
+  /* ---------- Tones ---------- */
+  .tones-title{ text-align:center; font-family:'JetBrains Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:.18em; color:var(--text-45); }
+  .tones-grid{ margin-top:32px; display:grid; gap:18px; grid-template-columns:1fr; }
+  @media(min-width:768px){ .tones-grid{ grid-template-columns:repeat(3,1fr); } }
+  .tone-card{ position:relative; height:100%; overflow:hidden; border-radius:18px; border:1px solid var(--line); background:var(--card-bg); padding:24px 24px 24px 26px; }
+  .tone-bar{ position:absolute; left:0; top:0; height:100%; width:3px; }
+  .tone-bar.soft{ background:var(--pulse); }
+  .tone-bar.normal{ background:var(--amber); }
+  .tone-bar.firm{ background:var(--ember); }
+  .tone-head{ display:flex; align-items:center; gap:8px; color:var(--text-45); }
+  .tone-head span{ font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.06em; }
+  .tone-card p{ margin-top:16px; font-size:14px; line-height:1.6; color:var(--text-60); }
 
-  #finalcta{overflow:hidden;}
-  .finalcta-glow{position:absolute; left:50%; top:50%; width:820px; height:420px; transform:translate(-50%,-50%); z-index:-1; border-radius:99px; background:rgba(0,229,160,.1); filter:blur(70px);}
-  .finalcta-inner{max-width:620px; margin:0 auto; text-align:center;}
-  .finalcta-inner h2{font-size:clamp(2rem,4.2vw,3rem); font-weight:650; letter-spacing:-.03em; line-height:1.15;}
-  .finalcta-inner p{margin-top:16px; color:var(--text-60);}
-  .nocard{margin-top:16px; font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-35);}
-  .finalcta-line{max-width:620px; height:80px; margin:64px auto 0; opacity:.5;}
+  /* ---------- Pricing ---------- */
+  .pricing-grid{ margin-top:64px; display:grid; gap:24px; grid-template-columns:1fr; align-items:end; }
+  @media(min-width:1024px){ .pricing-grid{ grid-template-columns:repeat(3,1fr); } }
+  .plan{ position:relative; height:100%; border-radius:18px; border:1px solid var(--line); background:var(--card-bg); padding:32px; transition:transform .3s ease; }
+  .plan:hover{ transform:translateY(-6px); }
+  .plan.popular{ border-color:rgba(0,229,160,.4); background:rgba(0,229,160,.05); box-shadow:0 30px 70px -30px rgba(0,229,160,.4); }
+  @media(min-width:1024px){ .plan.popular{ transform:scale(1.05); } .plan.popular:hover{ transform:scale(1.05) translateY(-6px); } }
+  .popular-badge{ position:absolute; top:-13px; left:50%; transform:translateX(-50%); background:var(--pulse); color:#0A0B0D; padding:4px 12px; border-radius:99px; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; }
+  .plan-name{ font-size:14px; color:var(--text-60); }
+  .plan-price{ margin-top:10px; display:flex; align-items:baseline; gap:4px; }
+  .plan-price .amt{ font-family:'JetBrains Mono',monospace; font-size:38px; font-weight:600; letter-spacing:-.03em; }
+  .plan-price .per{ font-size:14px; color:var(--text-45); }
+  .plan-tagline{ margin-top:10px; font-size:14px; line-height:1.6; color:var(--text-60); }
+  .plan-feats{ margin-top:28px; display:flex; flex-direction:column; gap:11px; }
+  .plan-feats li{ display:flex; gap:10px; align-items:flex-start; font-size:14px; color:var(--text-60); list-style:none; }
+  .plan-feats svg{ width:15px; height:15px; flex:none; margin-top:2px; color:var(--pulse); }
 
-  footer{border-top:1px solid var(--line);}
-  .footer-grid{padding:64px 0; display:grid; grid-template-columns:repeat(2,1fr); gap:40px;}
-  @media(min-width:768px){.footer-grid{grid-template-columns:repeat(5,1fr);}}
-  .footer-brand{grid-column:span 2;}
-  .footer-brand p{margin-top:12px; max-width:280px; font-size:14px; color:var(--text-60);}
-  .footer-col h4{margin-bottom:0;}
-  .footer-col ul{margin-top:16px; display:flex; flex-direction:column; gap:10px; list-style:none;}
-  .footer-col a{font-size:14px; color:var(--text-60); transition:color .2s;}
-  .footer-col a:hover{color:var(--text);}
-  .footer-bottom{display:flex; flex-direction:column; gap:12px; border-top:1px solid var(--line); padding:24px 0; font-size:12px; color:var(--text-25);}
-  @media(min-width:640px){.footer-bottom{flex-direction:row; align-items:center; justify-content:space-between;}}
+  /* ---------- Final CTA ---------- */
+  #finalcta{ overflow:hidden; }
+  .finalcta-glow{ position:absolute; left:50%; top:50%; width:820px; height:420px; transform:translate(-50%,-50%); z-index:-1; border-radius:99px; background:rgba(0,229,160,.1); filter:blur(70px); }
+  .finalcta-inner{ max-width:620px; margin:0 auto; text-align:center; }
+  .finalcta-inner h2{ font-size:clamp(2rem,4.2vw,3rem); font-weight:650; letter-spacing:-.03em; line-height:1.15; }
+  .finalcta-inner p{ margin-top:16px; color:var(--text-60); }
+  .nocard{ margin-top:16px; font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-35); }
+  .finalcta-line{ max-width:620px; height:80px; margin:64px auto 0; opacity:.5; }
 
-  /* ===== DEMO SECTION ===== */
-  #demo{position:relative; overflow:hidden;}
-  .demo-glow{position:absolute; left:50%; top:40%; width:900px; height:500px; transform:translate(-50%,-50%); z-index:0; border-radius:99px; background:rgba(0,229,160,.07); filter:blur(90px); pointer-events:none;}
-  .demo-header{position:relative; z-index:1; text-align:center; max-width:640px; margin:0 auto 56px;}
+  /* ---------- Footer ---------- */
+  footer{ border-top:1px solid var(--line); }
+  .footer-grid{ padding:64px 0; display:grid; grid-template-columns:repeat(2,1fr); gap:40px; }
+  @media(min-width:768px){ .footer-grid{ grid-template-columns:repeat(5,1fr); } }
+  .footer-brand{ grid-column:span 2; }
+  .footer-brand p{ margin-top:12px; max-width:280px; font-size:14px; color:var(--text-60); }
+  .footer-col h4{ margin-bottom:0; }
+  .footer-col ul{ margin-top:16px; display:flex; flex-direction:column; gap:10px; list-style:none; }
+  .footer-col a{ font-size:14px; color:var(--text-60); transition:color .2s; }
+  .footer-col a:hover{ color:var(--text); }
+  .footer-bottom{ display:flex; flex-direction:column; gap:12px; border-top:1px solid var(--line); padding:24px 0; font-size:12px; color:var(--text-25); }
+  @media(min-width:640px){ .footer-bottom{ flex-direction:row; align-items:center; justify-content:space-between; } }
 
-  .demo-input-card{position:relative; z-index:1; max-width:740px; margin:0 auto 40px; border-radius:20px; border:1px solid var(--line); background:var(--bg-soft); padding:28px 32px;}
-  .demo-input-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:20px;}
-  @media(max-width:640px){.demo-input-grid{grid-template-columns:1fr;}}
-  .demo-field label{display:block; font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:var(--text-45); margin-bottom:8px;}
-  .demo-field input,.demo-field select{width:100%; background:rgba(255,255,255,.04); border:1px solid var(--line); border-radius:10px; padding:10px 14px; font-size:14px; color:var(--text); font-family:'Inter',sans-serif; transition:border-color .2s, background .2s; -webkit-appearance:none; appearance:none;}
-  html.light .demo-field input,html.light .demo-field select{background:rgba(0,0,0,.03); color:var(--text);}
-  .demo-field input:focus,.demo-field select:focus{outline:none; border-color:var(--pulse); background:rgba(0,229,160,.04);}
-  .demo-generate-btn{width:100%; padding:14px; background:var(--pulse); color:#0A0B0D; border:none; border-radius:12px; font-size:15px; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:10px; transition:all .25s ease;}
-  .demo-generate-btn:hover{background:var(--pulse-glow); transform:translateY(-2px); box-shadow:0 8px 30px rgba(0,229,160,.4);}
-  .demo-generate-btn:active{transform:scale(.98);}
-  .demo-generate-btn .btn-spinner{display:none; width:16px; height:16px; border:2px solid rgba(10,11,13,.3); border-top-color:#0A0B0D; border-radius:50%; animation:spin .7s linear infinite;}
-  .demo-generate-btn.loading .btn-text{display:none;}
-  .demo-generate-btn.loading .btn-icon{display:none;}
-  .demo-generate-btn.loading .btn-spinner{display:block;}
-  @keyframes spin{to{transform:rotate(360deg);}}
-
-  .demo-output{position:relative; z-index:1; max-width:740px; margin:0 auto; display:flex; flex-direction:column; gap:20px;}
-  .demo-section{border-radius:18px; border:1px solid var(--line); background:var(--bg-soft); overflow:hidden; opacity:0; transform:translateY(18px); transition:opacity .5s ease, transform .5s cubic-bezier(.21,.47,.32,.98);}
-  .demo-section.visible{opacity:1; transform:translateY(0);}
-  .demo-section-header{display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid var(--line);}
-  .demo-section-header h4{font-size:13px; font-weight:500; display:flex; align-items:center; gap:8px;}
-  .section-badge{font-family:'JetBrains Mono',monospace; font-size:10px; padding:3px 8px; border-radius:99px; background:rgba(0,229,160,.12); color:var(--pulse);}
-  .demo-section-body{padding:20px;}
-
-  .inv-overview-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px;}
-  @media(max-width:480px){.inv-overview-grid{grid-template-columns:1fr 1fr;}}
-  .inv-stat{background:rgba(255,255,255,.025); border:1px solid var(--line); border-radius:12px; padding:14px;}
-  html.light .inv-stat{background:rgba(0,0,0,.025);}
-  .inv-stat-label{font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.06em; color:var(--text-45); margin-bottom:6px;}
-  .inv-stat-value{font-family:'JetBrains Mono',monospace; font-size:20px; font-weight:600; letter-spacing:-.02em;}
-  .inv-stat-value.pulse{color:var(--pulse);}
-  .inv-stat-value.amber{color:var(--amber);}
-  .inv-stat-value.ember{color:var(--ember);}
-
-  .insights-list{display:flex; flex-direction:column; gap:10px;}
-  .insight-row{display:flex; align-items:flex-start; gap:12px; padding:12px; border-radius:10px; background:rgba(0,229,160,.04); border:1px solid rgba(0,229,160,.12);}
-  .insight-icon{width:28px; height:28px; flex:none; display:flex; align-items:center; justify-content:center; border-radius:8px; background:rgba(0,229,160,.12); color:var(--pulse); margin-top:1px;}
-  .insight-icon svg{width:13px; height:13px;}
-  .insight-text{font-size:13px; line-height:1.55; color:var(--text-60);}
-  .insight-text strong{color:var(--text); font-weight:500;}
-
-  .email-tabs{display:flex; gap:6px; margin-bottom:16px; flex-wrap:wrap;}
-  .email-tab{padding:6px 14px; border-radius:99px; font-family:'JetBrains Mono',monospace; font-size:11px; border:1px solid var(--line); background:transparent; color:var(--text-60); cursor:pointer; transition:all .2s;}
-  .email-tab:hover{border-color:var(--text-35);}
-  .email-tab.active{background:var(--pulse); color:#0A0B0D; border-color:var(--pulse);}
-  .email-tab.active.amber{background:var(--amber); border-color:var(--amber);}
-  .email-tab.active.ember{background:var(--ember); border-color:var(--ember);}
-  .email-preview{background:rgba(255,255,255,.02); border:1px solid var(--line); border-radius:12px; padding:16px;}
-  html.light .email-preview{background:rgba(0,0,0,.02);}
-  .email-meta{display:flex; flex-direction:column; gap:4px; padding-bottom:12px; border-bottom:1px solid var(--line); margin-bottom:12px;}
-  .email-meta-row{display:flex; gap:8px; font-size:12px;}
-  .email-meta-row span:first-child{color:var(--text-35); font-family:'JetBrains Mono',monospace; min-width:44px;}
-  .email-meta-row span:last-child{color:var(--text-60);}
-  .email-body{font-size:13px; line-height:1.65; color:var(--text-60);}
-
-  .timeline{display:flex; flex-direction:column; gap:0;}
-  .tl-row{display:flex; gap:16px; align-items:flex-start;}
-  .tl-left{display:flex; flex-direction:column; align-items:center; width:32px; flex:none;}
-  .tl-dot{width:10px; height:10px; border-radius:99px; background:var(--line); flex:none; margin-top:4px; border:2px solid var(--bg);}
-  .tl-dot.done{background:var(--pulse);}
-  .tl-dot.scheduled{background:var(--amber);}
-  .tl-line{width:2px; flex:1; min-height:28px; background:var(--line); margin:4px 0;}
-  .tl-line.done{background:var(--pulse); opacity:.3;}
-  .tl-content{padding-bottom:20px;}
-  .tl-day{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-35); margin-bottom:3px;}
-  .tl-title{font-size:13px; font-weight:500;}
-  .tl-sub{font-size:12px; color:var(--text-45); margin-top:2px;}
-  .tl-status{display:inline-flex; align-items:center; gap:5px; margin-top:5px; font-family:'JetBrains Mono',monospace; font-size:10px;}
-  .tl-status.sent{color:var(--pulse);}
-  .tl-status.scheduled{color:var(--amber);}
-  .tl-status.pending{color:var(--text-35);}
+  /* ---------- Demo ---------- */
+  .demo-grid{ display:grid; gap:24px; grid-template-columns:1fr; margin-top:48px; }
+  @media(min-width:900px){ .demo-grid{ grid-template-columns:1fr 1.2fr; } }
+  .demo-field{ display:flex; flex-direction:column; gap:6px; margin-top:16px; }
+  .demo-field:first-child{ margin-top:0; }
+  .demo-field label{ font-size:12px; color:var(--text-45); }
+  .demo-field input, .demo-field select{
+    padding:10px 12px; border-radius:10px; border:1px solid var(--line);
+    background:var(--bg); color:var(--text); font:inherit; font-size:14px;
+  }
+  .demo-field input:focus, .demo-field select:focus{ border-color:var(--pulse); }
+  .demo-output{ display:none; }
+  .demo-output.visible{ display:block; }
+  .demo-output h4{ font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:var(--text-45); font-family:'JetBrains Mono',monospace; margin-top:22px; }
+  .demo-output h4:first-child{ margin-top:0; }
+  .demo-tabs{ display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
+  .demo-tab{ padding:8px 14px; border-radius:99px; border:1px solid var(--line); background:var(--card-bg); font-size:13px; }
+  .demo-tab.active{ background:var(--pulse); color:#0A0B0D; border-color:var(--pulse); }
+  .demo-email-body{ margin-top:12px; padding:16px; border-radius:12px; border:1px solid var(--line); background:var(--card-bg); font-size:13px; line-height:1.7; white-space:pre-line; color:var(--text-60); }
+  .demo-timeline{ margin-top:12px; display:flex; flex-direction:column; gap:10px; }
+  .demo-timeline-item{ display:flex; gap:12px; align-items:flex-start; font-size:13px; color:var(--text-60); }
+  .demo-timeline-dot{ width:8px; height:8px; border-radius:99px; background:var(--text-25); margin-top:5px; flex:none; }
+  .demo-timeline-item.done .demo-timeline-dot{ background:var(--pulse); }
+  .demo-insight-row{ display:flex; justify-content:space-between; font-size:13px; padding:8px 0; border-bottom:1px solid var(--line); color:var(--text-60); }
+  .demo-insight-row:last-child{ border-bottom:none; }
+  .demo-empty{ font-size:14px; color:var(--text-45); }
 </style>
 </head>
 <body>
@@ -342,8 +317,8 @@
     <nav class="desktop-nav">
       <a href="#solution" data-i18n="nav.product"></a>
       <a href="#how" data-i18n="nav.howItWorks"></a>
+      <a href="#demo" data-i18n="nav.tryDemo"></a>
       <a href="#pricing" data-i18n="nav.pricing"></a>
-      <a href="#demo" style="color:var(--pulse);font-weight:500;" data-i18n="nav.tryDemo"></a>
     </nav>
     <div class="header-right">
       <div class="lang-wrap" id="langWrap">
@@ -361,7 +336,7 @@
         <svg class="icon" id="themeIconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
       <a href="#" class="login-link" data-i18n="nav.login"></a>
-      <a href="#demo" class="btn btn-primary btn-md" style="margin-left:4px;" data-i18n="nav.tryDemo"></a>
+      <button class="btn btn-primary btn-md" id="navTryDemoBtn" style="margin-left:4px;" data-i18n="nav.cta"></button>
     </div>
     <button class="icon-btn mobile-toggle" id="mobileToggle" aria-label="Menu">
       <svg class="icon" id="menuIconOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
@@ -372,8 +347,8 @@
     <div class="mobile-menu-inner">
       <a href="#solution" data-i18n="nav.product"></a>
       <a href="#how" data-i18n="nav.howItWorks"></a>
+      <a href="#demo" data-i18n="nav.tryDemo"></a>
       <a href="#pricing" data-i18n="nav.pricing"></a>
-      <a href="#demo" style="color:var(--pulse);font-weight:500;" data-i18n="nav.tryDemo"></a>
       <div class="mobile-row">
         <div class="lang-wrap">
           <button class="lang-btn" id="langBtnMobile">
@@ -385,29 +360,48 @@
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         </button>
       </div>
-      <a href="#demo" class="btn btn-primary btn-md btn-full" style="margin-top:8px;" data-i18n="nav.tryDemo"></a>
+      <button class="btn btn-primary btn-md btn-full" id="mobileTryDemoBtn" style="margin-top:8px;" data-i18n="nav.cta"></button>
     </div>
   </div>
 </header>
 
 <main>
+
+  <!-- HERO -->
   <section id="hero" class="grid-bg">
     <div class="hero-glow" id="heroGlow"><div class="blob1"></div><div class="blob2"></div></div>
     <svg class="pulse-svg hero-pulse-bg" id="heroPulse" viewBox="0 0 760 80" fill="none" preserveAspectRatio="none">
-      <defs><linearGradient id="gradHeroBg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#00E5A0" stop-opacity="0"/><stop offset="12%" stop-color="#00E5A0" stop-opacity="1"/><stop offset="88%" stop-color="#00E5A0" stop-opacity="1"/><stop offset="100%" stop-color="#00E5A0" stop-opacity="0"/></linearGradient></defs>
+      <defs><linearGradient id="gradHeroBg" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#00E5A0" stop-opacity="0"/><stop offset="12%" stop-color="#00E5A0" stop-opacity="1"/>
+        <stop offset="88%" stop-color="#00E5A0" stop-opacity="1"/><stop offset="100%" stop-color="#00E5A0" stop-opacity="0"/>
+      </linearGradient></defs>
       <path d="M0,40 L60,40 L74,40 L82,18 L92,62 L102,28 L112,40 L180,40 L194,40 L202,18 L212,62 L222,28 L232,40 L300,40 L314,40 L322,18 L332,62 L342,28 L352,40 L420,40 L434,40 L442,18 L452,62 L462,28 L472,40 L540,40 L554,40 L562,18 L572,62 L582,28 L592,40 L660,40 L674,40 L682,18 L692,62 L702,28 L712,40 L760,40" stroke="url(#gradHeroBg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
+
     <div class="container hero-inner">
-      <div class="hero-badge"><span class="dot"></span><span class="eyebrow" style="color:var(--text-60);" data-i18n="hero.eyebrow"></span></div>
+      <div class="hero-badge">
+        <span class="dot"></span>
+        <span class="eyebrow" style="color:var(--text-60);" data-i18n="hero.eyebrow"></span>
+      </div>
+
       <h1 class="hero-title">
         <span class="reveal-line"><span data-i18n="hero.title1"></span></span>
         <span class="reveal-line muted line2"><span data-i18n="hero.title2"></span></span>
       </h1>
+
       <p class="hero-sub reveal" data-i18n="hero.subtitle"></p>
+
       <div class="hero-ctas reveal d1">
-        <a href="#demo" class="btn btn-primary btn-lg"><span data-i18n="hero.ctaPrimary"></span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        <a href="#how" class="btn btn-secondary btn-lg"><span data-i18n="hero.ctaSecondary"></span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><polygon points="10 8 16 12 10 16 10 8"/></svg></a>
+        <button class="btn btn-primary btn-lg" id="heroTryDemoBtn">
+          <span data-i18n="hero.ctaPrimary"></span>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <button class="btn btn-secondary btn-lg" id="heroSeeHowBtn">
+          <span data-i18n="hero.ctaSecondary"></span>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        </button>
       </div>
+
       <div class="hero-proof reveal d2">
         <p class="proof-label" data-i18n="hero.proofLabel"></p>
         <div class="stats-row">
@@ -416,30 +410,53 @@
           <div><div class="stat-value" data-i18n="hero.statDays"></div><div class="stat-label" data-i18n="hero.statDaysLabel"></div></div>
         </div>
       </div>
+
       <div class="dash-wrap" id="dashWrap">
         <div class="dash-glow"></div>
         <div class="dash-card">
           <div class="dash-chrome">
-            <span class="d" style="background:rgba(255,107,74,.7);"></span><span class="d" style="background:rgba(251,191,36,.7);"></span><span class="d" style="background:rgba(0,229,160,.7);"></span>
+            <span class="d" style="background:rgba(255,107,74,.7);"></span>
+            <span class="d" style="background:rgba(251,191,36,.7);"></span>
+            <span class="d" style="background:rgba(0,229,160,.7);"></span>
             <span class="url">app.paypulse.io</span>
           </div>
           <div class="dash-grid">
             <div class="dash-col">
-              <div class="dash-head"><div><h3 data-i18n="dashboard.title"></h3><p data-i18n="dashboard.subtitle"></p></div><span class="live-badge"><span class="live-dot"></span>LIVE</span></div>
-              <div class="row-head"><span data-i18n="dashboard.table.client"></span><span data-i18n="dashboard.table.amount"></span><span data-i18n="dashboard.table.status"></span><span style="text-align:right;" data-i18n="dashboard.table.lastReminder"></span></div>
+              <div class="dash-head">
+                <div>
+                  <h3 data-i18n="dashboard.title"></h3>
+                  <p data-i18n="dashboard.subtitle"></p>
+                </div>
+                <span class="live-badge"><span class="live-dot"></span>LIVE</span>
+              </div>
+              <div class="row-head">
+                <span data-i18n="dashboard.table.client"></span>
+                <span data-i18n="dashboard.table.amount"></span>
+                <span data-i18n="dashboard.table.status"></span>
+                <span style="text-align:right;" data-i18n="dashboard.table.lastReminder"></span>
+              </div>
               <div class="inv-row"><span class="name">Atelier Nova</span><span class="amt">€2,400</span><span><span class="badge paid" data-i18n="dashboard.status.paid"></span></span><span class="last">—</span></div>
               <div class="inv-row"><span class="name">Studio Lumen</span><span class="amt">€1,150</span><span><span class="badge pending" data-i18n="dashboard.status.pending"></span></span><span class="last">2d</span></div>
               <div class="inv-row"><span class="name">Kaia &amp; Co.</span><span class="amt">€3,820</span><span><span class="badge overdue" data-i18n="dashboard.status.overdue"></span></span><span class="last">14d</span></div>
               <div class="inv-row"><span class="name">Marchetti SRL</span><span class="amt">€640</span><span><span class="badge paid" data-i18n="dashboard.status.paid"></span></span><span class="last">—</span></div>
             </div>
             <div class="dash-col">
-              <div class="dash-stat-top"><span class="label" data-i18n="dashboard.recoveryRate"></span><span class="delta"><svg style="width:11px;height:11px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>+18%</span></div>
+              <div class="dash-stat-top">
+                <span class="label" data-i18n="dashboard.recoveryRate"></span>
+                <span class="delta">
+                  <svg style="width:11px;height:11px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>+18%
+                </span>
+              </div>
               <div class="dash-stat-value">94<sup>%</sup></div>
               <svg class="pulse-svg dash-chart" viewBox="0 0 760 80" fill="none" preserveAspectRatio="none">
-                <defs><filter id="glow1" x="-20%" y="-200%" width="140%" height="500%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><linearGradient id="gradSteady1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#00E5A0" stop-opacity="0"/><stop offset="12%" stop-color="#00E5A0" stop-opacity="1"/><stop offset="88%" stop-color="#00E5A0" stop-opacity="1"/><stop offset="100%" stop-color="#00E5A0" stop-opacity="0"/></linearGradient></defs>
+                <defs><filter id="glow1" x="-20%" y="-200%" width="140%" height="500%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                <linearGradient id="gradSteady1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#00E5A0" stop-opacity="0"/><stop offset="12%" stop-color="#00E5A0" stop-opacity="1"/><stop offset="88%" stop-color="#00E5A0" stop-opacity="1"/><stop offset="100%" stop-color="#00E5A0" stop-opacity="0"/></linearGradient></defs>
                 <path d="M0,40 L60,40 L74,40 L82,18 L92,62 L102,28 L112,40 L180,40 L194,40 L202,18 L212,62 L222,28 L232,40 L300,40 L314,40 L322,18 L332,62 L342,28 L352,40 L420,40 L434,40 L442,18 L452,62 L462,28 L472,40 L540,40 L554,40 L562,18 L572,62 L582,28 L592,40 L660,40 L674,40 L682,18 L692,62 L702,28 L712,40 L760,40" stroke="url(#gradSteady1)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow1)"/>
               </svg>
-              <div class="dash-footer"><span><span id="sentCount">128</span> <span data-i18n="dashboard.sent"></span></span><span class="ld"></span></div>
+              <div class="dash-footer">
+                <span><span id="sentCount">128</span> <span data-i18n="dashboard.sent"></span></span>
+                <span class="ld"></span>
+              </div>
             </div>
           </div>
         </div>
@@ -447,23 +464,36 @@
     </div>
   </section>
 
+  <!-- PROBLEM -->
   <section id="problem" class="bordered">
     <div class="container">
       <span class="eyebrow reveal" data-i18n="problem.eyebrow"></span>
       <h2 class="section-title text-balance reveal d1" data-i18n="problem.title"></h2>
       <p class="section-sub text-balance reveal d2" data-i18n="problem.subtitle"></p>
+
       <svg class="pulse-svg" id="problemPulse" viewBox="0 0 760 80" fill="none" preserveAspectRatio="none" style="height:48px;margin-top:48px;opacity:.45;">
         <defs><linearGradient id="gradErratic" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#FF6B4A" stop-opacity="0"/><stop offset="12%" stop-color="#FF6B4A" stop-opacity="1"/><stop offset="88%" stop-color="#FF6B4A" stop-opacity="1"/><stop offset="100%" stop-color="#FF6B4A" stop-opacity="0"/></linearGradient></defs>
         <path d="M0,40 L40,40 L48,32 L56,48 L64,40 L120,40 L128,36 L136,44 L144,40 L210,40 L222,30 L230,50 L238,40 L300,40 L306,42 L312,38 L318,40 L380,40 L392,34 L400,46 L408,40 L470,40 L478,33 L486,47 L494,40 L560,40 L572,38 L580,42 L588,40 L650,40 L662,32 L670,48 L678,40 L740,40 L748,40 L760,40" stroke="url(#gradErratic)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
+
       <div class="cards-3 stagger-group" id="problemCards">
-        <div class="stagger-item card"><div class="card-icon ember"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><h3 data-i18n="problem.cards.0.title"></h3><p data-i18n="problem.cards.0.body"></p></div>
-        <div class="stagger-item card"><div class="card-icon ember"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg></div><h3 data-i18n="problem.cards.1.title"></h3><p data-i18n="problem.cards.1.body"></p></div>
-        <div class="stagger-item card"><div class="card-icon ember"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg></div><h3 data-i18n="problem.cards.2.title"></h3><p data-i18n="problem.cards.2.body"></p></div>
+        <div class="stagger-item card">
+          <div class="card-icon ember"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <h3 data-i18n="problem.cards.0.title"></h3><p data-i18n="problem.cards.0.body"></p>
+        </div>
+        <div class="stagger-item card">
+          <div class="card-icon ember"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg></div>
+          <h3 data-i18n="problem.cards.1.title"></h3><p data-i18n="problem.cards.1.body"></p>
+        </div>
+        <div class="stagger-item card">
+          <div class="card-icon ember"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg></div>
+          <h3 data-i18n="problem.cards.2.title"></h3><p data-i18n="problem.cards.2.body"></p>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- SOLUTION -->
   <section id="solution">
     <div class="container">
       <div class="solution-grid">
@@ -471,105 +501,221 @@
           <span class="eyebrow reveal" data-i18n="solution.eyebrow"></span>
           <h2 class="section-title text-balance reveal d1" data-i18n="solution.title"></h2>
           <p class="section-sub text-balance reveal d2" data-i18n="solution.subtitle"></p>
+
           <div class="stagger-group" id="solutionPoints">
-            <div class="stagger-item point-row"><div class="point-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div><h3 data-i18n="solution.points.0.title"></h3><p data-i18n="solution.points.0.body"></p></div></div>
-            <div class="stagger-item point-row"><div class="point-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3l1.9 4.4L18 9l-4.1 1.6L12 15l-1.9-4.4L6 9l4.1-1.6z"/></svg></div><div><h3 data-i18n="solution.points.1.title"></h3><p data-i18n="solution.points.1.body"></p></div></div>
-            <div class="stagger-item point-row"><div class="point-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div><div><h3 data-i18n="solution.points.2.title"></h3><p data-i18n="solution.points.2.body"></p></div></div>
+            <div class="stagger-item point-row">
+              <div class="point-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+              <div><h3 data-i18n="solution.points.0.title"></h3><p data-i18n="solution.points.0.body"></p></div>
+            </div>
+            <div class="stagger-item point-row">
+              <div class="point-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3l1.9 4.4L18 9l-4.1 1.6L12 15l-1.9-4.4L6 9l4.1-1.6z"/><path d="M19 14l.8 1.9L22 17l-2.2.9L19 20l-.8-2.1L16 17l2.2-1.1z"/></svg></div>
+              <div><h3 data-i18n="solution.points.1.title"></h3><p data-i18n="solution.points.1.body"></p></div>
+            </div>
+            <div class="stagger-item point-row">
+              <div class="point-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
+              <div><h3 data-i18n="solution.points.2.title"></h3><p data-i18n="solution.points.2.body"></p></div>
+            </div>
           </div>
         </div>
-        <div class="reveal">
-          <div class="panel"><div class="panel-top"><span class="lbl" data-i18n="solution.badgeFlat"></span><span class="panel-dot"></span></div><svg class="pulse-svg panel-chart" viewBox="0 0 760 80" fill="none" preserveAspectRatio="none"><path d="M0,40 L40,40 L48,32 L56,48 L64,40 L120,40 L128,36 L136,44 L144,40 L210,40 L222,30 L230,50 L238,40 L300,40 L306,42 L312,38 L318,40 L380,40 L392,34 L400,46 L408,40 L470,40 L478,33 L486,47 L494,40 L560,40 L572,38 L580,42 L588,40 L650,40 L662,32 L670,48 L678,40 L740,40 L748,40 L760,40" stroke="url(#gradErratic)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="panel active"><div class="panel-top"><span class="lbl" data-i18n="solution.badgeAlive"></span><span class="panel-dot"></span></div><svg class="pulse-svg panel-chart" viewBox="0 0 760 80" fill="none" preserveAspectRatio="none"><path d="M0,40 L60,40 L74,40 L82,18 L92,62 L102,28 L112,40 L180,40 L194,40 L202,18 L212,62 L222,28 L232,40 L300,40 L314,40 L322,18 L332,62 L342,28 L352,40 L420,40 L434,40 L442,18 L452,62 L462,28 L472,40 L540,40 L554,40 L562,18 L572,62 L582,28 L592,40 L660,40 L674,40 L682,18 L692,62 L702,28 L712,40 L760,40" stroke="url(#gradSteady1)" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow1)"/></svg></div>
+
+        <div class="reveal" style="transform-origin:center;">
+          <div class="panel">
+            <div class="panel-top"><span class="lbl" data-i18n="solution.badgeFlat"></span><span class="panel-dot"></span></div>
+            <svg class="pulse-svg panel-chart" viewBox="0 0 760 80" fill="none" preserveAspectRatio="none">
+              <path d="M0,40 L40,40 L48,32 L56,48 L64,40 L120,40 L128,36 L136,44 L144,40 L210,40 L222,30 L230,50 L238,40 L300,40 L306,42 L312,38 L318,40 L380,40 L392,34 L400,46 L408,40 L470,40 L478,33 L486,47 L494,40 L560,40 L572,38 L580,42 L588,40 L650,40 L662,32 L670,48 L678,40 L740,40 L748,40 L760,40" stroke="url(#gradErratic)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="panel active">
+            <div class="panel-top"><span class="lbl" data-i18n="solution.badgeAlive"></span><span class="panel-dot"></span></div>
+            <svg class="pulse-svg panel-chart" viewBox="0 0 760 80" fill="none" preserveAspectRatio="none">
+              <path d="M0,40 L60,40 L74,40 L82,18 L92,62 L102,28 L112,40 L180,40 L194,40 L202,18 L212,62 L222,28 L232,40 L300,40 L314,40 L322,18 L332,62 L342,28 L352,40 L420,40 L434,40 L442,18 L452,62 L462,28 L472,40 L540,40 L554,40 L562,18 L572,62 L582,28 L592,40 L660,40 L674,40 L682,18 L692,62 L702,28 L712,40 L760,40" stroke="url(#gradSteady1)" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow1)"/>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- HOW IT WORKS -->
   <section id="how" class="bordered">
     <div class="container">
-      <div style="max-width:680px;"><span class="eyebrow reveal" data-i18n="how.eyebrow"></span><h2 class="section-title text-balance reveal d1" data-i18n="how.title"></h2><p class="section-sub reveal d2" data-i18n="how.subtitle"></p></div>
+      <div style="max-width:680px;">
+        <span class="eyebrow reveal" data-i18n="how.eyebrow"></span>
+        <h2 class="section-title text-balance reveal d1" data-i18n="how.title"></h2>
+        <p class="section-sub reveal d2" data-i18n="how.subtitle"></p>
+      </div>
+
       <div class="steps-wrap stagger-group" id="howSteps">
         <div class="step-line"></div>
-        <div class="stagger-item step-card"><div class="step-top"><span class="step-num">01</span><div class="step-rule"></div></div><h3 data-i18n="how.steps.0.title"></h3><p data-i18n="how.steps.0.body"></p></div>
-        <div class="stagger-item step-card"><div class="step-top"><span class="step-num">02</span><div class="step-rule"></div></div><h3 data-i18n="how.steps.1.title"></h3><p data-i18n="how.steps.1.body"></p></div>
-        <div class="stagger-item step-card"><div class="step-top"><span class="step-num">03</span><div class="step-rule"></div></div><h3 data-i18n="how.steps.2.title"></h3><p data-i18n="how.steps.2.body"></p></div>
+        <div class="stagger-item step-card">
+          <div class="step-top"><span class="step-num">01</span><div class="step-rule"></div></div>
+          <h3 data-i18n="how.steps.0.title"></h3><p data-i18n="how.steps.0.body"></p>
+        </div>
+        <div class="stagger-item step-card">
+          <div class="step-top"><span class="step-num">02</span><div class="step-rule"></div></div>
+          <h3 data-i18n="how.steps.1.title"></h3><p data-i18n="how.steps.1.body"></p>
+        </div>
+        <div class="stagger-item step-card">
+          <div class="step-top"><span class="step-num">03</span><div class="step-rule"></div></div>
+          <h3 data-i18n="how.steps.2.title"></h3><p data-i18n="how.steps.2.body"></p>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- FEATURES -->
   <section id="features" class="bordered">
     <div class="container">
-      <div style="max-width:680px;"><span class="eyebrow reveal" data-i18n="features.eyebrow"></span><h2 class="section-title text-balance reveal d1" data-i18n="features.title"></h2><p class="section-sub reveal d2" data-i18n="features.subtitle"></p></div>
-      <div class="cards-2 stagger-group" id="featureCards">
-        <div class="stagger-item card"><div class="card-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8L19 13M15 9h0M17.8 6.2L19 5M3 21l9-9M12.2 6.2L11 5"/></svg></div><h3 data-i18n="features.items.0.title"></h3><p data-i18n="features.items.0.body"></p></div>
-        <div class="stagger-item card"><div class="card-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg></div><h3 data-i18n="features.items.1.title"></h3><p data-i18n="features.items.1.body"></p></div>
-        <div class="stagger-item card"><div class="card-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div><h3 data-i18n="features.items.2.title"></h3><p data-i18n="features.items.2.body"></p></div>
-        <div class="stagger-item card"><div class="card-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg></div><h3 data-i18n="features.items.3.title"></h3><p data-i18n="features.items.3.body"></p></div>
+      <div style="max-width:680px;">
+        <span class="eyebrow reveal" data-i18n="features.eyebrow"></span>
+        <h2 class="section-title text-balance reveal d1" data-i18n="features.title"></h2>
+        <p class="section-sub reveal d2" data-i18n="features.subtitle"></p>
       </div>
+
+      <div class="cards-2 stagger-group" id="featureCards">
+        <div class="stagger-item card">
+          <div class="card-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8L19 13M15 9h0M17.8 6.2L19 5M3 21l9-9M12.2 6.2L11 5"/></svg></div>
+          <h3 data-i18n="features.items.0.title"></h3><p data-i18n="features.items.0.body"></p>
+        </div>
+        <div class="stagger-item card">
+          <div class="card-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg></div>
+          <h3 data-i18n="features.items.1.title"></h3><p data-i18n="features.items.1.body"></p>
+        </div>
+        <div class="stagger-item card">
+          <div class="card-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+          <h3 data-i18n="features.items.2.title"></h3><p data-i18n="features.items.2.body"></p>
+        </div>
+        <div class="stagger-item card">
+          <div class="card-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg></div>
+          <h3 data-i18n="features.items.3.title"></h3><p data-i18n="features.items.3.body"></p>
+        </div>
+      </div>
+
       <div style="margin-top:96px;">
         <h3 class="tones-title" data-i18n="features.tonesTitle"></h3>
         <div class="tones-grid stagger-group" id="tonesGrid">
-          <div class="stagger-item tone-card"><span class="tone-bar soft"></span><div class="tone-head"><svg style="width:13px;height:13px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 4h16v12H5.17L4 17.17z"/></svg><span data-i18n="features.tones.0.label"></span></div><p data-i18n="features.tones.0.sample"></p></div>
-          <div class="stagger-item tone-card"><span class="tone-bar normal"></span><div class="tone-head"><svg style="width:13px;height:13px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 4h16v12H5.17L4 17.17z"/></svg><span data-i18n="features.tones.1.label"></span></div><p data-i18n="features.tones.1.sample"></p></div>
-          <div class="stagger-item tone-card"><span class="tone-bar firm"></span><div class="tone-head"><svg style="width:13px;height:13px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 4h16v12H5.17L4 17.17z"/></svg><span data-i18n="features.tones.2.label"></span></div><p data-i18n="features.tones.2.sample"></p></div>
+          <div class="stagger-item tone-card">
+            <span class="tone-bar soft"></span>
+            <div class="tone-head"><svg style="width:13px;height:13px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 4h16v12H5.17L4 17.17z"/></svg><span data-i18n="features.tones.0.label"></span></div>
+            <p data-i18n="features.tones.0.sample"></p>
+          </div>
+          <div class="stagger-item tone-card">
+            <span class="tone-bar normal"></span>
+            <div class="tone-head"><svg style="width:13px;height:13px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 4h16v12H5.17L4 17.17z"/></svg><span data-i18n="features.tones.1.label"></span></div>
+            <p data-i18n="features.tones.1.sample"></p>
+          </div>
+          <div class="stagger-item tone-card">
+            <span class="tone-bar firm"></span>
+            <div class="tone-head"><svg style="width:13px;height:13px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 4h16v12H5.17L4 17.17z"/></svg><span data-i18n="features.tones.2.label"></span></div>
+            <p data-i18n="features.tones.2.sample"></p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- INTERACTIVE DEMO -->
+  <!-- DEMO -->
   <section id="demo" class="bordered">
-    <div class="demo-glow"></div>
     <div class="container">
-      <div class="demo-header reveal">
-        <span class="eyebrow" data-i18n="demo.eyebrow"></span>
-        <h2 class="section-title text-balance" style="margin:16px auto 0;text-align:center;" data-i18n="demo.title"></h2>
-        <p class="section-sub" style="margin:16px auto 0;text-align:center;" data-i18n="demo.subtitle"></p>
-      </div>
-      <div class="demo-input-card reveal d1">
-        <div class="demo-input-grid">
-          <div class="demo-field"><label data-i18n="demo.fields.client"></label><input type="text" id="demoClient" placeholder="e.g. Studio Lumen" /></div>
-          <div class="demo-field"><label data-i18n="demo.fields.amount"></label><input type="text" id="demoAmount" placeholder="e.g. €2,400" /></div>
-          <div class="demo-field"><label data-i18n="demo.fields.overdue"></label><select id="demoOverdue"><option value="3">3 days overdue</option><option value="14" selected>14 days overdue</option><option value="30">30 days overdue</option><option value="45">45 days overdue</option></select></div>
-        </div>
-        <button class="demo-generate-btn" id="demoGenerateBtn">
-          <span class="btn-text" data-i18n="demo.generateBtn"></span>
-          <svg class="btn-icon icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3l1.9 4.4L18 9l-4.1 1.6L12 15l-1.9-4.4L6 9l4.1-1.6z"/></svg>
-          <div class="btn-spinner"></div>
-        </button>
-      </div>
-      <div class="demo-output" id="demoOutput">
-        <div class="demo-section" id="demoSection1">
-          <div class="demo-section-header"><h4><svg style="width:14px;height:14px;color:var(--pulse);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span data-i18n="demo.sections.overview.title"></span></h4><span class="section-badge" data-i18n="demo.sections.overview.badge"></span></div>
-          <div class="demo-section-body"><div class="inv-overview-grid" id="overviewGrid"></div></div>
-        </div>
-        <div class="demo-section" id="demoSection2">
-          <div class="demo-section-header"><h4><svg style="width:14px;height:14px;color:var(--pulse);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3l1.9 4.4L18 9l-4.1 1.6L12 15l-1.9-4.4L6 9l4.1-1.6z"/></svg><span data-i18n="demo.sections.insights.title"></span></h4><span class="section-badge" data-i18n="demo.sections.insights.badge"></span></div>
-          <div class="demo-section-body"><div class="insights-list" id="insightsList"></div></div>
-        </div>
-        <div class="demo-section" id="demoSection3">
-          <div class="demo-section-header"><h4><svg style="width:14px;height:14px;color:var(--pulse);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 4h16v12H5.17L4 17.17z"/></svg><span data-i18n="demo.sections.emails.title"></span></h4><span class="section-badge" data-i18n="demo.sections.emails.badge"></span></div>
-          <div class="demo-section-body"><div class="email-tabs" id="emailTabs"></div><div class="email-preview" id="emailPreview"></div></div>
-        </div>
-        <div class="demo-section" id="demoSection4">
-          <div class="demo-section-header"><h4><svg style="width:14px;height:14px;color:var(--pulse);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg><span data-i18n="demo.sections.timeline.title"></span></h4><span class="section-badge" data-i18n="demo.sections.timeline.badge"></span></div>
-          <div class="demo-section-body"><div class="timeline" id="timelineList"></div></div>
+      <span class="eyebrow reveal" data-i18n="demo.eyebrow"></span>
+      <h2 class="section-title text-balance reveal d1" data-i18n="demo.title"></h2>
+      <p class="section-sub text-balance reveal d2" data-i18n="demo.subtitle"></p>
+
+      <div class="demo-grid">
+        <form class="card reveal" id="demoForm">
+          <div class="demo-field">
+            <label for="demoClientName" data-i18n="demo.form.clientName"></label>
+            <input type="text" id="demoClientName" required placeholder="Kaia & Co.">
+          </div>
+          <div class="demo-field">
+            <label for="demoClientEmail" data-i18n="demo.form.clientEmail"></label>
+            <input type="email" id="demoClientEmail" required placeholder="billing@kaiaco.com">
+          </div>
+          <div class="demo-field">
+            <label for="demoAmount" data-i18n="demo.form.amount"></label>
+            <input type="number" id="demoAmount" required min="1" step="1" placeholder="3820">
+          </div>
+          <div class="demo-field">
+            <label for="demoDueDate" data-i18n="demo.form.dueDate"></label>
+            <input type="date" id="demoDueDate" required>
+          </div>
+          <div class="demo-field">
+            <label for="demoTone" data-i18n="demo.form.tone"></label>
+            <select id="demoTone">
+              <option value="soft" data-i18n="demo.form.toneSoft"></option>
+              <option value="normal" selected data-i18n="demo.form.toneNormal"></option>
+              <option value="firm" data-i18n="demo.form.toneFirm"></option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full" style="margin-top:24px;" id="demoGenerateBtn">
+            <span data-i18n="demo.form.generate"></span>
+          </button>
+        </form>
+
+        <div class="card reveal d1">
+          <p class="demo-empty" id="demoEmptyState" data-i18n="demo.emptyState"></p>
+
+          <div class="demo-output" id="demoOutput">
+            <h4 data-i18n="demo.output.invoiceOverview"></h4>
+            <div class="demo-insight-row"><span data-i18n="demo.form.clientName"></span><strong id="outClient">—</strong></div>
+            <div class="demo-insight-row"><span data-i18n="demo.form.amount"></span><strong id="outAmount">—</strong></div>
+            <div class="demo-insight-row"><span data-i18n="demo.form.dueDate"></span><strong id="outDueDate">—</strong></div>
+            <div class="demo-insight-row"><span data-i18n="demo.output.daysOverdue"></span><strong id="outDays">—</strong></div>
+
+            <h4 data-i18n="demo.output.insights"></h4>
+            <div class="demo-insight-row"><span data-i18n="demo.output.riskLevel"></span><strong id="outRisk">—</strong></div>
+            <div class="demo-insight-row"><span data-i18n="demo.output.recoveryOdds"></span><strong id="outOdds">—</strong></div>
+            <div class="demo-insight-row"><span data-i18n="demo.output.suggestedTone"></span><strong id="outSuggested">—</strong></div>
+
+            <h4 data-i18n="demo.output.emailReminder"></h4>
+            <div class="demo-tabs" id="demoTabs"></div>
+            <div class="demo-email-body" id="demoEmailBody"></div>
+
+            <h4 data-i18n="demo.output.timeline"></h4>
+            <div class="demo-timeline" id="demoTimeline"></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- PRICING -->
   <section id="pricing" class="bordered">
     <div class="container">
-      <div style="max-width:560px;" class="center"><span class="eyebrow reveal" data-i18n="pricing.eyebrow"></span><h2 class="section-title text-balance reveal d1" style="margin-left:auto;margin-right:auto;" data-i18n="pricing.title"></h2><p class="section-sub reveal d2" style="margin-left:auto;margin-right:auto;" data-i18n="pricing.subtitle"></p></div>
+      <div style="max-width:560px;" class="center">
+        <span class="eyebrow reveal" data-i18n="pricing.eyebrow"></span>
+        <h2 class="section-title text-balance reveal d1" style="margin-left:auto;margin-right:auto;" data-i18n="pricing.title"></h2>
+        <p class="section-sub reveal d2" style="margin-left:auto;margin-right:auto;" data-i18n="pricing.subtitle"></p>
+      </div>
+
       <div class="pricing-grid stagger-group" id="pricingGrid">
-        <div class="stagger-item plan"><div class="plan-name" data-i18n="pricing.plans.0.name"></div><div class="plan-price"><span class="amt" data-i18n="pricing.plans.0.price"></span></div><p class="plan-tagline" data-i18n="pricing.plans.0.tagline"></p><a href="#demo" class="btn btn-secondary btn-full" style="margin-top:28px;" data-i18n="pricing.plans.0.cta"></a><ul class="plan-feats" data-plan="0"></ul></div>
-        <div class="stagger-item plan popular"><span class="popular-badge" data-i18n="pricing.mostPopular"></span><div class="plan-name" data-i18n="pricing.plans.1.name"></div><div class="plan-price"><span class="amt" data-i18n="pricing.plans.1.price"></span><span class="per" data-i18n="pricing.perMonth"></span></div><p class="plan-tagline" data-i18n="pricing.plans.1.tagline"></p><a href="#demo" class="btn btn-primary btn-full" style="margin-top:28px;" data-i18n="pricing.plans.1.cta"></a><ul class="plan-feats" data-plan="1"></ul></div>
-        <div class="stagger-item plan"><div class="plan-name" data-i18n="pricing.plans.2.name"></div><div class="plan-price"><span class="amt" data-i18n="pricing.plans.2.price"></span><span class="per" data-i18n="pricing.perMonth"></span></div><p class="plan-tagline" data-i18n="pricing.plans.2.tagline"></p><a href="#demo" class="btn btn-secondary btn-full" style="margin-top:28px;" data-i18n="pricing.plans.2.cta"></a><ul class="plan-feats" data-plan="2"></ul></div>
+        <div class="stagger-item plan">
+          <div class="plan-name" data-i18n="pricing.plans.0.name"></div>
+          <div class="plan-price"><span class="amt" data-i18n="pricing.plans.0.price"></span></div>
+          <p class="plan-tagline" data-i18n="pricing.plans.0.tagline"></p>
+          <button class="btn btn-secondary btn-full" style="margin-top:28px;" data-i18n="pricing.plans.0.cta"></button>
+          <ul class="plan-feats" data-plan="0"></ul>
+        </div>
+        <div class="stagger-item plan popular">
+          <span class="popular-badge" data-i18n="pricing.mostPopular"></span>
+          <div class="plan-name" data-i18n="pricing.plans.1.name"></div>
+          <div class="plan-price"><span class="amt" data-i18n="pricing.plans.1.price"></span><span class="per" data-i18n="pricing.perMonth"></span></div>
+          <p class="plan-tagline" data-i18n="pricing.plans.1.tagline"></p>
+          <button class="btn btn-primary btn-full" style="margin-top:28px;" data-i18n="pricing.plans.1.cta"></button>
+          <ul class="plan-feats" data-plan="1"></ul>
+        </div>
+        <div class="stagger-item plan">
+          <div class="plan-name" data-i18n="pricing.plans.2.name"></div>
+          <div class="plan-price"><span class="amt" data-i18n="pricing.plans.2.price"></span><span class="per" data-i18n="pricing.perMonth"></span></div>
+          <p class="plan-tagline" data-i18n="pricing.plans.2.tagline"></p>
+          <button class="btn btn-secondary btn-full" style="margin-top:28px;" data-i18n="pricing.plans.2.cta"></button>
+          <ul class="plan-feats" data-plan="2"></ul>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- FINAL CTA -->
   <section id="finalcta" class="bordered">
     <div class="finalcta-glow"></div>
     <div class="container">
@@ -577,8 +723,14 @@
         <h2 class="reveal text-balance" data-i18n="finalCta.title"></h2>
         <p class="reveal d1 text-balance" data-i18n="finalCta.subtitle"></p>
         <div class="hero-ctas reveal d2">
-          <a href="#demo" class="btn btn-primary btn-lg"><span data-i18n="finalCta.ctaPrimary"></span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-          <a href="#how" class="btn btn-secondary btn-lg"><span data-i18n="finalCta.ctaSecondary"></span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><polygon points="10 8 16 12 10 16 10 8"/></svg></a>
+          <button class="btn btn-primary btn-lg" id="finalTryDemoBtn">
+            <span data-i18n="finalCta.ctaPrimary"></span>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+          <button class="btn btn-secondary btn-lg" id="finalSeeHowBtn">
+            <span data-i18n="finalCta.ctaSecondary"></span>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          </button>
         </div>
         <p class="nocard reveal d3" data-i18n="finalCta.noCard"></p>
       </div>
@@ -587,54 +739,502 @@
       </svg>
     </div>
   </section>
+
 </main>
 
 <footer>
   <div class="container footer-grid">
-    <div class="footer-brand"><div class="logo"><span class="logo-dot"><span></span></span><span class="logo-text">PayPulse</span></div><p data-i18n="footer.tagline"></p></div>
-    <div class="footer-col"><h4 class="eyebrow" data-i18n="footer.product"></h4><ul id="footerProduct"></ul></div>
-    <div class="footer-col"><h4 class="eyebrow" data-i18n="footer.company"></h4><ul id="footerCompany"></ul></div>
-    <div class="footer-col"><h4 class="eyebrow" data-i18n="footer.legal"></h4><ul id="footerLegal"></ul></div>
+    <div class="footer-brand">
+      <div class="logo"><span class="logo-dot"><span></span></span><span class="logo-text">PayPulse</span></div>
+      <p data-i18n="footer.tagline"></p>
+    </div>
+    <div class="footer-col">
+      <h4 class="eyebrow" data-i18n="footer.product"></h4>
+      <ul id="footerProduct"></ul>
+    </div>
+    <div class="footer-col">
+      <h4 class="eyebrow" data-i18n="footer.company"></h4>
+      <ul id="footerCompany"></ul>
+    </div>
+    <div class="footer-col">
+      <h4 class="eyebrow" data-i18n="footer.legal"></h4>
+      <ul id="footerLegal"></ul>
+    </div>
   </div>
-  <div class="container footer-bottom"><span><span id="footerYear"></span> PayPulse. <span data-i18n="footer.rights"></span></span><span class="mono">Paris, France</span></div>
+  <div class="container footer-bottom">
+    <span><span id="footerYear"></span> PayPulse. <span data-i18n="footer.rights"></span></span>
+    <span class="mono">Paris, France</span>
+  </div>
 </footer>
 
 <script>
-const dict={en:{nav:{product:"Product",howItWorks:"How it works",pricing:"Pricing",login:"Log in",cta:"Start free",tryDemo:"Try demo"},hero:{eyebrow:"AI-powered invoice recovery",title1:"Get paid faster.",title2:"Automatically.",subtitle:"PayPulse writes and sends your payment reminders for you — soft at first, firmer if they're ignored — until every invoice is paid.",ctaPrimary:"Try the demo",ctaSecondary:"See how it works",proofLabel:"Trusted by independent freelancers and small teams",statRecovered:"€2.4M+",statRecoveredLabel:"recovered for freelancers",statTime:"11 min",statTimeLabel:"average setup time",statDays:"9 days",statDaysLabel:"faster average payment"},problem:{eyebrow:"The cost of staying quiet",title:"Unpaid invoices aren't a paperwork problem.",subtitle:"They're a cashflow problem. And chasing them yourself costs more than the time it takes.",cards:[{title:"Invoices go unpaid",body:"Clients forget, deprioritize, or simply wait until someone asks twice. Without a system, late payment is the default outcome."},{title:"You waste hours chasing",body:"Writing reminder emails, tracking who you've already nudged, guessing how firm to sound — it eats the time you could spend on real work."},{title:"Cashflow stays stressful",body:"When money owed to you sits in limbo, every other decision — hiring, spending, breathing — gets harder than it should be."}]},solution:{eyebrow:"What changes with PayPulse",title:"One invoice in. A full recovery sequence out.",subtitle:"Add the invoice once. PayPulse handles the writing, the timing, and the follow-through.",points:[{title:"Add the invoice",body:"Enter the amount, the client, and the due date — or forward the PDF. PayPulse takes it from there."},{title:"AI writes the reminders",body:"Each email is generated for that client and that invoice, in a tone that matches how overdue it is."},{title:"Follow-ups send themselves",body:"If a reminder goes unanswered, the next one sends automatically — escalating until the invoice is marked paid."}],badgeFlat:"Manual chasing",badgeAlive:"Running on PayPulse"},how:{eyebrow:"How it works",title:"Three steps. No more spreadsheets.",subtitle:"From unpaid to paid, without you writing a single email.",steps:[{title:"Add invoice",body:"Drop in the invoice details in under a minute. Connect your invoicing tool to skip this entirely."},{title:"AI generates the reminders",body:"PayPulse drafts a full sequence — soft, normal, firm, final notice — tailored to the client and the amount owed."},{title:"Get paid faster",body:"Reminders go out on schedule. You get notified the moment the invoice is settled."}]},features:{eyebrow:"Built for getting paid",title:"Everything it takes to close the loop.",subtitle:"Not just templates — a system that writes, times, and escalates for you.",items:[{title:"AI email generation",body:"Every reminder is written specifically for that invoice — the client's name, the amount, the days overdue — not a generic template."},{title:"Tone that adapts",body:"Day 3 sounds like a gentle nudge. Day 30 sounds like a final notice. PayPulse adjusts the tone so you never sound out of step."},{title:"Automatic follow-ups",body:"Set the sequence once. PayPulse keeps sending, on schedule, until the client pays or you step in."},{title:"One dashboard, full visibility",body:"See every invoice, its status, and its reminder history at a glance — no more digging through your sent folder."}],tonesTitle:"The same invoice, three moments in time",tones:[{label:"Soft — day 3",sample:"Hi Marc, just a friendly note that invoice #1042 (€1,200) was due last Friday. Let me know if you need anything from me to process it."},{label:"Normal — day 14",sample:"Hi Marc, following up on invoice #1042 (€1,200), now two weeks overdue. Could you confirm a payment date this week?"},{label:"Firm — day 30",sample:"Marc, invoice #1042 (€1,200) is now 30 days overdue. Please settle it by Friday to avoid further action."}]},demo:{eyebrow:"Interactive demo",title:"See it work on a real invoice.",subtitle:"Enter any invoice details below and watch PayPulse generate a full recovery sequence in seconds.",fields:{client:"Client name",amount:"Invoice amount",overdue:"Days overdue"},generateBtn:"Generate Recovery Sequence",sections:{overview:{title:"Invoice Overview",badge:"Auto-detected"},insights:{title:"Smart Recovery Insights",badge:"AI Analysis"},emails:{title:"Email Reminder Sequence",badge:"Ready to send"},timeline:{title:"Automation Timeline",badge:"Scheduled"}},tabs:{soft:"Day 3 — Soft",normal:"Day 14 — Normal",firm:"Day 30 — Firm",final:"Day 45 — Final"},timeline:{sent:"Sent",scheduled:"Scheduled",pending:"Pending"}},pricing:{eyebrow:"Pricing",title:"Simple plans. No surprise fees.",subtitle:"Start free. Upgrade when the invoices start adding up.",perMonth:"/month",mostPopular:"Most popular",plans:[{name:"Free trial",price:"€0",tagline:"Try the full recovery flow on your first 3 invoices.",cta:"Start free",features:["Up to 3 active invoices","AI-generated reminders","Soft & normal tone","Email support"]},{name:"Pro",price:"€12",tagline:"For freelancers who'd rather not chase anyone.",cta:"Start with Pro",features:["Unlimited invoices","Full tone range, incl. final notice","Automatic follow-up sequences","Payment status dashboard","Priority support"]},{name:"Business",price:"€29",tagline:"For small teams managing multiple clients at once.",cta:"Start with Business",features:["Everything in Pro","Multiple team members","Custom sending domain","Client-level reporting","Dedicated onboarding"]}]},finalCta:{title:"Start getting paid faster today.",subtitle:"Add your first invoice in under a minute. PayPulse handles the rest.",ctaPrimary:"Try the demo",ctaSecondary:"See how it works",noCard:"No credit card required"},footer:{tagline:"AI reminders that get your invoices paid.",product:"Product",company:"Company",legal:"Legal",links:{product:["Features","Pricing","How it works","Try demo"],company:["About","Blog","Careers"],legal:["Privacy","Terms","Security"]},rights:"All rights reserved."},dashboard:{title:"Invoices",subtitle:"Live recovery status",status:{paid:"Paid",pending:"Pending",overdue:"Overdue"},recoveryRate:"Recovery rate",sent:"reminders sent",table:{client:"Client",amount:"Amount",status:"Status",lastReminder:"Last reminder"}}},fr:{nav:{product:"Produit",howItWorks:"Fonctionnement",pricing:"Tarifs",login:"Connexion",cta:"Essai gratuit",tryDemo:"Essayer la démo"},hero:{eyebrow:"Recouvrement de factures piloté par l'IA",title1:"Soyez payé plus vite.",title2:"Automatiquement.",subtitle:"PayPulse rédige et envoie vos relances de paiement à votre place — douces au départ, plus fermes si elles sont ignorées — jusqu'à ce que chaque facture soit réglée.",ctaPrimary:"Essayer la démo",ctaSecondary:"Voir comment ça marche",proofLabel:"Adopté par des freelances et petites équipes indépendantes",statRecovered:"2,4M€+",statRecoveredLabel:"récupérés pour des freelances",statTime:"11 min",statTimeLabel:"temps de mise en place moyen",statDays:"9 jours",statDaysLabel:"de délai de paiement en moins"},problem:{eyebrow:"Le coût du silence",title:"Une facture impayée n'est pas un problème administratif.",subtitle:"C'est un problème de trésorerie. Et la relancer vous-même coûte plus cher que le temps que ça prend.",cards:[{title:"Les factures restent impayées",body:"Les clients oublient, repoussent, ou attendent simplement qu'on leur redemande. Sans système, le retard de paiement devient la norme."},{title:"Vous perdez du temps à relancer",body:"Rédiger des emails, suivre qui a déjà été relancé, deviner quel ton adopter — tout ça grignote le temps que vous pourriez consacrer à votre vrai travail."},{title:"La trésorerie reste sous tension",body:"Quand l'argent qui vous est dû reste en suspens, chaque décision — embaucher, dépenser, souffler — devient plus difficile qu'elle ne devrait l'être."}]},solution:{eyebrow:"Ce qui change avec PayPulse",title:"Une facture ajoutée. Une séquence de recouvrement complète.",subtitle:"Ajoutez la facture une seule fois. PayPulse gère la rédaction, le timing et le suivi.",points:[{title:"Ajoutez la facture",body:"Saisissez le montant, le client et la date d'échéance — ou transférez le PDF. PayPulse prend le relais."},{title:"L'IA rédige les relances",body:"Chaque email est généré pour ce client et cette facture précise, avec un ton adapté au retard accumulé."},{title:"Les relances s'enchaînent seules",body:"Si une relance reste sans réponse, la suivante part automatiquement — en s'intensifiant jusqu'à ce que la facture soit marquée payée."}],badgeFlat:"Relance manuelle",badgeAlive:"Piloté par PayPulse"},how:{eyebrow:"Fonctionnement",title:"Trois étapes. Plus aucun tableur.",subtitle:"De l'impayé au paiement, sans rédiger un seul email.",steps:[{title:"Ajoutez la facture",body:"Renseignez les détails de la facture en moins d'une minute. Connectez votre outil de facturation pour sauter cette étape."},{title:"L'IA génère les relances",body:"PayPulse rédige une séquence complète — douce, normale, ferme, dernier avertissement — adaptée au client et au montant dû."},{title:"Soyez payé plus vite",body:"Les relances partent selon le calendrier prévu. Vous êtes prévenu dès que la facture est réglée."}]},features:{eyebrow:"Conçu pour être payé",title:"Tout ce qu'il faut pour boucler la boucle.",subtitle:"Pas de simples modèles — un système qui rédige, programme et intensifie à votre place.",items:[{title:"Génération d'emails par IA",body:"Chaque relance est rédigée spécifiquement pour cette facture — le nom du client, le montant, le nombre de jours de retard — jamais un modèle générique."},{title:"Un ton qui s'adapte",body:"Le jour 3 ressemble à un rappel amical. Le jour 30 ressemble à un dernier avertissement. PayPulse ajuste le ton pour que vous ne sembliez jamais à côté."},{title:"Relances automatiques",body:"Définissez la séquence une fois. PayPulse continue d'envoyer, selon le calendrier, jusqu'au paiement ou jusqu'à votre intervention."},{title:"Un tableau de bord, une vue complète",body:"Visualisez chaque facture, son statut et son historique de relances en un coup d'œil — fini les recherches dans vos emails envoyés."}],tonesTitle:"La même facture, trois moments différents",tones:[{label:"Douce — jour 3",sample:"Bonjour Marc, petit rappel amical : la facture #1042 (1 200€) était due vendredi dernier. Dites-moi si vous avez besoin de quoi que ce soit pour la traiter."},{label:"Normale — jour 14",sample:"Bonjour Marc, je reviens vers vous concernant la facture #1042 (1 200€), désormais en retard de deux semaines. Pouvez-vous confirmer une date de paiement cette semaine ?"},{label:"Ferme — jour 30",sample:"Marc, la facture #1042 (1 200€) accuse désormais 30 jours de retard. Merci de la régler avant vendredi pour éviter toute action supplémentaire."}]},demo:{eyebrow:"Démo interactive",title:"Voyez-le fonctionner sur une vraie facture.",subtitle:"Renseignez les détails d'une facture ci-dessous et regardez PayPulse générer une séquence de recouvrement complète en quelques secondes.",fields:{client:"Nom du client",amount:"Montant de la facture",overdue:"Jours de retard"},generateBtn:"Générer la séquence de recouvrement",sections:{overview:{title:"Aperçu de la facture",badge:"Détecté auto."},insights:{title:"Analyse intelligente",badge:"Analyse IA"},emails:{title:"Séquence d'emails",badge:"Prête à envoyer"},timeline:{title:"Calendrier automatisé",badge:"Planifié"}},tabs:{soft:"Jour 3 — Douce",normal:"Jour 14 — Normale",firm:"Jour 30 — Ferme",final:"Jour 45 — Finale"},timeline:{sent:"Envoyé",scheduled:"Planifié",pending:"À venir"}},pricing:{eyebrow:"Tarifs",title:"Des formules simples. Aucun frais caché.",subtitle:"Commencez gratuitement. Évoluez quand les factures s'accumulent.",perMonth:"/mois",mostPopular:"Le plus populaire",plans:[{name:"Essai gratuit",price:"0€",tagline:"Testez le parcours complet sur vos 3 premières factures.",cta:"Essai gratuit",features:["Jusqu'à 3 factures actives","Relances générées par IA","Ton doux et normal","Support par email"]},{name:"Pro",price:"12€",tagline:"Pour les freelances qui préfèrent ne relancer personne.",cta:"Choisir Pro",features:["Factures illimitées","Tous les tons, dernier avertissement inclus","Séquences de relance automatiques","Tableau de bord des paiements","Support prioritaire"]},{name:"Business",price:"29€",tagline:"Pour les petites équipes qui gèrent plusieurs clients à la fois.",cta:"Choisir Business",features:["Tout ce qui est inclus dans Pro","Plusieurs membres d'équipe","Domaine d'envoi personnalisé","Rapports par client","Accompagnement dédié"]}]},finalCta:{title:"Commencez à être payé plus vite dès aujourd'hui.",subtitle:"Ajoutez votre première facture en moins d'une minute. PayPulse s'occupe du reste.",ctaPrimary:"Essayer la démo",ctaSecondary:"Voir comment ça marche",noCard:"Aucune carte bancaire requise"},footer:{tagline:"Des relances IA qui font payer vos factures.",product:"Produit",company:"Entreprise",legal:"Légal",links:{product:["Fonctionnalités","Tarifs","Fonctionnement","Essayer la démo"],company:["À propos","Blog","Carrières"],legal:["Confidentialité","Conditions","Sécurité"]},rights:"Tous droits réservés."},dashboard:{title:"Factures",subtitle:"Statut de recouvrement en direct",status:{paid:"Payée",pending:"En attente",overdue:"En retard"},recoveryRate:"Taux de recouvrement",sent:"relances envoyées",table:{client:"Client",amount:"Montant",status:"Statut",lastReminder:"Dernière relance"}}}};
+/* ====================== i18n ====================== */
+const dict = {
+  en: {
+    nav:{ product:"Product", howItWorks:"How it works", tryDemo:"Try Demo", pricing:"Pricing", login:"Log in", cta:"Start free" },
+    hero:{
+      eyebrow:"AI-powered invoice recovery", title1:"Get paid faster.", title2:"Automatically.",
+      subtitle:"PayPulse writes and sends your payment reminders for you — soft at first, firmer if they're ignored — until every invoice is paid.",
+      ctaPrimary:"Start free", ctaSecondary:"See how it works",
+      proofLabel:"Trusted by independent freelancers and small teams",
+      statRecovered:"€2.4M+", statRecoveredLabel:"recovered for freelancers",
+      statTime:"11 min", statTimeLabel:"average setup time",
+      statDays:"9 days", statDaysLabel:"faster average payment"
+    },
+    problem:{
+      eyebrow:"The cost of staying quiet", title:"Unpaid invoices aren't a paperwork problem.",
+      subtitle:"They're a cashflow problem. And chasing them yourself costs more than the time it takes.",
+      cards:[
+        {title:"Invoices go unpaid", body:"Clients forget, deprioritize, or simply wait until someone asks twice. Without a system, late payment is the default outcome."},
+        {title:"You waste hours chasing", body:"Writing reminder emails, tracking who you've already nudged, guessing how firm to sound — it eats the time you could spend on real work."},
+        {title:"Cashflow stays stressful", body:"When money owed to you sits in limbo, every other decision — hiring, spending, breathing — gets harder than it should be."}
+      ]
+    },
+    solution:{
+      eyebrow:"What changes with PayPulse", title:"One invoice in. A full recovery sequence out.",
+      subtitle:"Add the invoice once. PayPulse handles the writing, the timing, and the follow-through.",
+      points:[
+        {title:"Add the invoice", body:"Enter the amount, the client, and the due date — or forward the PDF. PayPulse takes it from there."},
+        {title:"AI writes the reminders", body:"Each email is generated for that client and that invoice, in a tone that matches how overdue it is."},
+        {title:"Follow-ups send themselves", body:"If a reminder goes unanswered, the next one sends automatically — escalating until the invoice is marked paid."}
+      ],
+      badgeFlat:"Manual chasing", badgeAlive:"Running on PayPulse"
+    },
+    how:{
+      eyebrow:"How it works", title:"Three steps. No more spreadsheets.", subtitle:"From unpaid to paid, without you writing a single email.",
+      steps:[
+        {title:"Add invoice", body:"Drop in the invoice details in under a minute. Connect your invoicing tool to skip this entirely."},
+        {title:"AI generates the reminders", body:"PayPulse drafts a full sequence — soft, normal, firm, final notice — tailored to the client and the amount owed."},
+        {title:"Get paid faster", body:"Reminders go out on schedule. You get notified the moment the invoice is settled."}
+      ]
+    },
+    features:{
+      eyebrow:"Built for getting paid", title:"Everything it takes to close the loop.", subtitle:"Not just templates — a system that writes, times, and escalates for you.",
+      items:[
+        {title:"AI email generation", body:"Every reminder is written specifically for that invoice — the client's name, the amount, the days overdue — not a generic template."},
+        {title:"Tone that adapts", body:"Day 3 sounds like a gentle nudge. Day 30 sounds like a final notice. PayPulse adjusts the tone so you never sound out of step."},
+        {title:"Automatic follow-ups", body:"Set the sequence once. PayPulse keeps sending, on schedule, until the client pays or you step in."},
+        {title:"One dashboard, full visibility", body:"See every invoice, its status, and its reminder history at a glance — no more digging through your sent folder."}
+      ],
+      tonesTitle:"The same invoice, three moments in time",
+      tones:[
+        {label:"Soft — day 3", sample:"Hi Marc, just a friendly note that invoice #1042 (€1,200) was due last Friday. Let me know if you need anything from me to process it."},
+        {label:"Normal — day 14", sample:"Hi Marc, following up on invoice #1042 (€1,200), now two weeks overdue. Could you confirm a payment date this week?"},
+        {label:"Firm — day 30", sample:"Marc, invoice #1042 (€1,200) is now 30 days overdue. Please settle it by Friday to avoid further action."}
+      ]
+    },
+    demo:{
+      eyebrow:"Try it yourself", title:"Generate a real reminder sequence in seconds.",
+      subtitle:"Fill in one invoice below. PayPulse will simulate the full recovery workflow — overview, insights, emails, and timeline.",
+      emptyState:"Fill in the invoice details and click Generate Reminder to see PayPulse in action.",
+      form:{
+        clientName:"Client name", clientEmail:"Client email", amount:"Amount (€)", dueDate:"Due date",
+        tone:"Starting tone", toneSoft:"Soft", toneNormal:"Normal", toneFirm:"Firm", generate:"Generate Reminder"
+      },
+      output:{
+        invoiceOverview:"Invoice Overview", daysOverdue:"Days overdue", insights:"Smart Recovery Insights",
+        riskLevel:"Risk level", recoveryOdds:"Recovery odds", suggestedTone:"Suggested tone",
+        emailReminder:"Email Reminder", timeline:"Automation Timeline"
+      },
+      risk:{ low:"Low", medium:"Medium", high:"High" },
+      timelineLabels:{
+        invoiceAdded:"Invoice added to PayPulse", softSent:"Soft reminder sent",
+        normalSent:"Normal follow-up sent", firmSent:"Firm notice sent", nextAction:"Next automatic action scheduled"
+      },
+      tones:{
+        soft:{ label:"Soft", subject:"Quick note about invoice", body:"Hi {client},\n\nJust a friendly note that your invoice for €{amount} was due on {dueDate}. No rush at all — let me know if you need anything from me to get it processed.\n\nThanks!" },
+        normal:{ label:"Normal", subject:"Following up on invoice", body:"Hi {client},\n\nFollowing up on your invoice for €{amount}, due {dueDate} and now {days} day(s) overdue. Could you confirm a payment date this week?\n\nThanks for taking care of this." },
+        firm:{ label:"Firm", subject:"Invoice overdue — action required", body:"Hi {client},\n\nYour invoice for €{amount} is now {days} day(s) overdue (originally due {dueDate}). Please arrange payment as soon as possible to avoid further action.\n\nPlease confirm once this is settled." }
+      }
+    },
+    pricing:{
+      eyebrow:"Pricing", title:"Simple plans. No surprise fees.", subtitle:"Start free. Upgrade when the invoices start adding up.",
+      perMonth:"/month", mostPopular:"Most popular",
+      plans:[
+        {name:"Free trial", price:"€0", tagline:"Try the full recovery flow on your first 3 invoices.", cta:"Start free", features:["Up to 3 active invoices","AI-generated reminders","Soft & normal tone","Email support"]},
+        {name:"Pro", price:"€12", tagline:"For freelancers who'd rather not chase anyone.", cta:"Start with Pro", features:["Unlimited invoices","Full tone range, incl. final notice","Automatic follow-up sequences","Payment status dashboard","Priority support"]},
+        {name:"Business", price:"€29", tagline:"For small teams managing multiple clients at once.", cta:"Start with Business", features:["Everything in Pro","Multiple team members","Custom sending domain","Client-level reporting","Dedicated onboarding"]}
+      ]
+    },
+    finalCta:{ title:"Start getting paid faster today.", subtitle:"Add your first invoice in under a minute. PayPulse handles the rest.", ctaPrimary:"Start free", ctaSecondary:"See how it works", noCard:"No credit card required" },
+    footer:{
+      tagline:"AI reminders that get your invoices paid.", product:"Product", company:"Company", legal:"Legal",
+      links:{ product:["Features","Pricing","How it works"], company:["About","Blog","Careers"], legal:["Privacy","Terms","Security"] },
+      rights:"All rights reserved."
+    },
+    dashboard:{
+      title:"Invoices", subtitle:"Live recovery status",
+      status:{ paid:"Paid", pending:"Pending", overdue:"Overdue" },
+      recoveryRate:"Recovery rate", sent:"reminders sent",
+      table:{ client:"Client", amount:"Amount", status:"Status", lastReminder:"Last reminder" }
+    }
+  },
+  fr: {
+    nav:{ product:"Produit", howItWorks:"Fonctionnement", tryDemo:"Essayer la démo", pricing:"Tarifs", login:"Connexion", cta:"Essai gratuit" },
+    hero:{
+      eyebrow:"Recouvrement de factures piloté par l'IA", title1:"Soyez payé plus vite.", title2:"Automatiquement.",
+      subtitle:"PayPulse rédige et envoie vos relances de paiement à votre place — douces au départ, plus fermes si elles sont ignorées — jusqu'à ce que chaque facture soit réglée.",
+      ctaPrimary:"Essai gratuit", ctaSecondary:"Voir comment ça marche",
+      proofLabel:"Adopté par des freelances et petites équipes indépendantes",
+      statRecovered:"2,4M€+", statRecoveredLabel:"récupérés pour des freelances",
+      statTime:"11 min", statTimeLabel:"temps de mise en place moyen",
+      statDays:"9 jours", statDaysLabel:"de délai de paiement en moins"
+    },
+    problem:{
+      eyebrow:"Le coût du silence", title:"Une facture impayée n'est pas un problème administratif.",
+      subtitle:"C'est un problème de trésorerie. Et la relancer vous-même coûte plus cher que le temps que ça prend.",
+      cards:[
+        {title:"Les factures restent impayées", body:"Les clients oublient, repoussent, ou attendent simplement qu'on leur redemande. Sans système, le retard de paiement devient la norme."},
+        {title:"Vous perdez du temps à relancer", body:"Rédiger des emails, suivre qui a déjà été relancé, deviner quel ton adopter — tout ça grignote le temps que vous pourriez consacrer à votre vrai travail."},
+        {title:"La trésorerie reste sous tension", body:"Quand l'argent qui vous est dû reste en suspens, chaque décision — embaucher, dépenser, souffler — devient plus difficile qu'elle ne devrait l'être."}
+      ]
+    },
+    solution:{
+      eyebrow:"Ce qui change avec PayPulse", title:"Une facture ajoutée. Une séquence de recouvrement complète.",
+      subtitle:"Ajoutez la facture une seule fois. PayPulse gère la rédaction, le timing et le suivi.",
+      points:[
+        {title:"Ajoutez la facture", body:"Saisissez le montant, le client et la date d'échéance — ou transférez le PDF. PayPulse prend le relais."},
+        {title:"L'IA rédige les relances", body:"Chaque email est généré pour ce client et cette facture précise, avec un ton adapté au retard accumulé."},
+        {title:"Les relances s'enchaînent seules", body:"Si une relance reste sans réponse, la suivante part automatiquement — en s'intensifiant jusqu'à ce que la facture soit marquée payée."}
+      ],
+      badgeFlat:"Relance manuelle", badgeAlive:"Piloté par PayPulse"
+    },
+    how:{
+      eyebrow:"Fonctionnement", title:"Trois étapes. Plus aucun tableur.", subtitle:"De l'impayé au paiement, sans rédiger un seul email.",
+      steps:[
+        {title:"Ajoutez la facture", body:"Renseignez les détails de la facture en moins d'une minute. Connectez votre outil de facturation pour sauter cette étape."},
+        {title:"L'IA génère les relances", body:"PayPulse rédige une séquence complète — douce, normale, ferme, dernier avertissement — adaptée au client et au montant dû."},
+        {title:"Soyez payé plus vite", body:"Les relances partent selon le calendrier prévu. Vous êtes prévenu dès que la facture est réglée."}
+      ]
+    },
+    features:{
+      eyebrow:"Conçu pour être payé", title:"Tout ce qu'il faut pour boucler la boucle.", subtitle:"Pas de simples modèles — un système qui rédige, programme et intensifie à votre place.",
+      items:[
+        {title:"Génération d'emails par IA", body:"Chaque relance est rédigée spécifiquement pour cette facture — le nom du client, le montant, le nombre de jours de retard — jamais un modèle générique."},
+        {title:"Un ton qui s'adapte", body:"Le jour 3 ressemble à un rappel amical. Le jour 30 ressemble à un dernier avertissement. PayPulse ajuste le ton pour que vous ne sembliez jamais à côté."},
+        {title:"Relances automatiques", body:"Définissez la séquence une fois. PayPulse continue d'envoyer, selon le calendrier, jusqu'au paiement ou jusqu'à votre intervention."},
+        {title:"Un tableau de bord, une vue complète", body:"Visualisez chaque facture, son statut et son historique de relances en un coup d'œil — fini les recherches dans vos emails envoyés."}
+      ],
+      tonesTitle:"La même facture, trois moments différents",
+      tones:[
+        {label:"Douce — jour 3", sample:"Bonjour Marc, petit rappel amical : la facture #1042 (1 200€) était due vendredi dernier. Dites-moi si vous avez besoin de quoi que ce soit pour la traiter."},
+        {label:"Normale — jour 14", sample:"Bonjour Marc, je reviens vers vous concernant la facture #1042 (1 200€), désormais en retard de deux semaines. Pouvez-vous confirmer une date de paiement cette semaine ?"},
+        {label:"Ferme — jour 30", sample:"Marc, la facture #1042 (1 200€) accuse désormais 30 jours de retard. Merci de la régler avant vendredi pour éviter toute action supplémentaire."}
+      ]
+    },
+    demo:{
+      eyebrow:"Essayez par vous-même", title:"Générez une vraie séquence de relance en quelques secondes.",
+      subtitle:"Renseignez une facture ci-dessous. PayPulse simule le flux de recouvrement complet — aperçu, analyses, emails et chronologie.",
+      emptyState:"Renseignez les détails de la facture et cliquez sur Générer la relance pour voir PayPulse en action.",
+      form:{
+        clientName:"Nom du client", clientEmail:"Email du client", amount:"Montant (€)", dueDate:"Date d'échéance",
+        tone:"Ton de départ", toneSoft:"Douce", toneNormal:"Normale", toneFirm:"Ferme", generate:"Générer la relance"
+      },
+      output:{
+        invoiceOverview:"Aperçu de la facture", daysOverdue:"Jours de retard", insights:"Analyses de recouvrement",
+        riskLevel:"Niveau de risque", recoveryOdds:"Probabilité de recouvrement", suggestedTone:"Ton suggéré",
+        emailReminder:"Email de relance", timeline:"Chronologie automatisée"
+      },
+      risk:{ low:"Faible", medium:"Moyen", high:"Élevé" },
+      timelineLabels:{
+        invoiceAdded:"Facture ajoutée à PayPulse", softSent:"Relance douce envoyée",
+        normalSent:"Relance normale envoyée", firmSent:"Avertissement ferme envoyé", nextAction:"Prochaine action automatique programmée"
+      },
+      tones:{
+        soft:{ label:"Douce", subject:"Petit rappel concernant votre facture", body:"Bonjour {client},\n\nPetit rappel amical : votre facture de €{amount} était due le {dueDate}. Aucune urgence — dites-moi si vous avez besoin de quoi que ce soit pour la traiter.\n\nMerci !" },
+        normal:{ label:"Normale", subject:"Suivi de votre facture", body:"Bonjour {client},\n\nJe reviens vers vous concernant votre facture de €{amount}, due le {dueDate} et désormais en retard de {days} jour(s). Pouvez-vous confirmer une date de paiement cette semaine ?\n\nMerci de votre attention." },
+        firm:{ label:"Ferme", subject:"Facture en retard — action requise", body:"Bonjour {client},\n\nVotre facture de €{amount} est désormais en retard de {days} jour(s) (échéance initiale : {dueDate}). Merci de procéder au règlement dans les meilleurs délais pour éviter toute action supplémentaire.\n\nMerci de confirmer une fois le paiement effectué." }
+      }
+    },
+    pricing:{
+      eyebrow:"Tarifs", title:"Des formules simples. Aucun frais caché.", subtitle:"Commencez gratuitement. Évoluez quand les factures s'accumulent.",
+      perMonth:"/mois", mostPopular:"Le plus populaire",
+      plans:[
+        {name:"Essai gratuit", price:"0€", tagline:"Testez le parcours complet sur vos 3 premières factures.", cta:"Essai gratuit", features:["Jusqu'à 3 factures actives","Relances générées par IA","Ton doux et normal","Support par email"]},
+        {name:"Pro", price:"12€", tagline:"Pour les freelances qui préfèrent ne relancer personne.", cta:"Choisir Pro", features:["Factures illimitées","Tous les tons, dernier avertissement inclus","Séquences de relance automatiques","Tableau de bord des paiements","Support prioritaire"]},
+        {name:"Business", price:"29€", tagline:"Pour les petites équipes qui gèrent plusieurs clients à la fois.", cta:"Choisir Business", features:["Tout ce qui est inclus dans Pro","Plusieurs membres d'équipe","Domaine d'envoi personnalisé","Rapports par client","Accompagnement dédié"]}
+      ]
+    },
+    finalCta:{ title:"Commencez à être payé plus vite dès aujourd'hui.", subtitle:"Ajoutez votre première facture en moins d'une minute. PayPulse s'occupe du reste.", ctaPrimary:"Essai gratuit", ctaSecondary:"Voir comment ça marche", noCard:"Aucune carte bancaire requise" },
+    footer:{
+      tagline:"Des relances IA qui font payer vos factures.", product:"Produit", company:"Entreprise", legal:"Légal",
+      links:{ product:["Fonctionnalités","Tarifs","Fonctionnement"], company:["À propos","Blog","Carrières"], legal:["Confidentialité","Conditions","Sécurité"] },
+      rights:"Tous droits réservés."
+    },
+    dashboard:{
+      title:"Factures", subtitle:"Statut de recouvrement en direct",
+      status:{ paid:"Payée", pending:"En attente", overdue:"En retard" },
+      recoveryRate:"Taux de recouvrement", sent:"relances envoyées",
+      table:{ client:"Client", amount:"Montant", status:"Statut", lastReminder:"Dernière relance" }
+    }
+  }
+};
 
-let locale=localStorage.getItem('paypulse-locale')||(navigator.language.slice(0,2)==='fr'?'fr':'en');
-function t(path){return path.split('.').reduce((o,k)=>(o&&o[k]!==undefined)?o[k]:null,dict[locale]);}
-function applyLocale(){
-  document.documentElement.lang=locale;
-  document.querySelectorAll('[data-i18n]').forEach(el=>{const v=t(el.dataset.i18n);if(v!==null)el.textContent=v;});
-  document.getElementById('langCode').textContent=locale.toUpperCase();
-  document.getElementById('langCodeMobile').textContent=locale.toUpperCase();
-  document.querySelectorAll('.lang-item').forEach(btn=>btn.classList.toggle('active',btn.dataset.locale===locale));
-  const sel=document.getElementById('demoOverdue');
-  if(sel){const lbls=locale==='fr'?['3 jours de retard','14 jours de retard','30 jours de retard','45 jours de retard']:['3 days overdue','14 days overdue','30 days overdue','45 days overdue'];sel.querySelectorAll('option').forEach((o,i)=>o.textContent=lbls[i]);}
-  document.querySelectorAll('.plan-feats').forEach(ul=>{const idx=ul.dataset.plan;const feats=t('pricing.plans.'+idx+'.features')||[];ul.innerHTML=feats.map(f=>'<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>'+f+'</li>').join('');});
-  document.getElementById('footerProduct').innerHTML=t('footer.links.product').map((x,i)=>'<li><a href="'+(i===3?'#demo':'#')+'">'+x+'</a></li>').join('');
-  document.getElementById('footerCompany').innerHTML=t('footer.links.company').map(x=>'<li><a href="#">'+x+'</a></li>').join('');
-  document.getElementById('footerLegal').innerHTML=t('footer.links.legal').map(x=>'<li><a href="#">'+x+'</a></li>').join('');
-  document.title=locale==='fr'?"PayPulse — Soyez payé plus vite. Automatiquement.":"PayPulse — Get paid faster. Automatically.";
+let locale = localStorage.getItem('paypulse-locale') || (navigator.language.slice(0,2) === 'fr' ? 'fr' : 'en');
+
+function t(path){
+  return path.split('.').reduce((o,k)=> (o && o[k] !== undefined) ? o[k] : null, dict[locale]);
 }
-function setLocale(l){locale=l;localStorage.setItem('paypulse-locale',l);applyLocale();}
 
-function applyThemeIcon(th){document.getElementById('themeIconSun').style.display=th==='dark'?'block':'none';document.getElementById('themeIconMoon').style.display=th==='dark'?'none':'block';}
-let theme=localStorage.getItem('paypulse-theme')||(window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
-document.documentElement.classList.toggle('light',theme==='light');
+function applyLocale(){
+  document.documentElement.lang = locale;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const val = t(el.dataset.i18n);
+    if (val !== null) el.textContent = val;
+  });
+  document.getElementById('langCode').textContent = locale;
+  document.getElementById('langCodeMobile').textContent = locale;
+  document.querySelectorAll('.lang-item').forEach(btn=>{
+    btn.classList.toggle('active', btn.dataset.locale === locale);
+  });
+  // pricing feature lists
+  document.querySelectorAll('.plan-feats').forEach(ul=>{
+    const idx = ul.dataset.plan;
+    const feats = t('pricing.plans.' + idx + '.features') || [];
+    ul.innerHTML = feats.map(f => '<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>' + f + '</li>').join('');
+  });
+  // footer columns
+  document.getElementById('footerProduct').innerHTML = t('footer.links.product').map(x=>'<li><a href="#">'+x+'</a></li>').join('');
+  document.getElementById('footerCompany').innerHTML = t('footer.links.company').map(x=>'<li><a href="#">'+x+'</a></li>').join('');
+  document.getElementById('footerLegal').innerHTML = t('footer.links.legal').map(x=>'<li><a href="#">'+x+'</a></li>').join('');
+
+  document.title = locale === 'fr' ? "PayPulse — Soyez payé plus vite. Automatiquement." : "PayPulse — Get paid faster. Automatically.";
+
+  // Re-render demo output (if already generated) so it follows the active language
+  if (window.__paypulseLastDemoInput) {
+    renderDemoOutput(window.__paypulseLastDemoInput);
+  }
+}
+
+function setLocale(l){
+  locale = l;
+  localStorage.setItem('paypulse-locale', l);
+  applyLocale();
+}
+
+/* ====================== Theme ====================== */
+function applyThemeIcon(theme){
+  document.getElementById('themeIconSun').style.display = theme === 'dark' ? 'block' : 'none';
+  document.getElementById('themeIconMoon').style.display = theme === 'dark' ? 'none' : 'block';
+}
+let theme = localStorage.getItem('paypulse-theme') ||
+  (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+document.documentElement.classList.toggle('light', theme === 'light');
 applyThemeIcon(theme);
-function toggleTheme(){theme=theme==='dark'?'light':'dark';document.documentElement.classList.toggle('light',theme==='light');localStorage.setItem('paypulse-theme',theme);applyThemeIcon(theme);}
-document.getElementById('themeBtn').addEventListener('click',toggleTheme);
-document.getElementById('themeBtnMobile').addEventListener('click',toggleTheme);
 
-const headerEl=document.getElementById('siteHeader');
-function onScroll(){headerEl.classList.toggle('scrolled',window.scrollY>12);}
-onScroll();window.addEventListener('scroll',onScroll,{passive:true});
-const mobileToggle=document.getElementById('mobileToggle'),mobileMenu=document.getElementById('mobileMenu'),menuOpen=document.getElementById('menuIconOpen'),menuClose=document.getElementById('menuIconClose');
-mobileToggle.addEventListener('click',()=>{const open=mobileMenu.classList.toggle('open');menuOpen.style.display=open?'none':'block';menuClose.style.display=open?'block':'none';});
-mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileMenu.classList.remove('open');menuOpen.style.display='block';menuClose.style.display='none';}));
+function toggleTheme(){
+  theme = theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.classList.toggle('light', theme === 'light');
+  localStorage.setItem('paypulse-theme', theme);
+  applyThemeIcon(theme);
+}
+document.getElementById('themeBtn').addEventListener('click', toggleTheme);
+document.getElementById('themeBtnMobile').addEventListener('click', toggleTheme);
 
-const langWrap=document.getElementById('langWrap'),langBtn=document.getElementById('langBtn'),langMenu=document.getElementById('langMenu');
-langBtn.addEventListener('click',e=>{e.stopPropagation();langMenu.classList.toggle('open');});
-document
+/* ====================== Header scroll / mobile menu ====================== */
+const headerEl = document.getElementById('siteHeader');
+function onScroll(){ headerEl.classList.toggle('scrolled', window.scrollY > 12); }
+onScroll();
+window.addEventListener('scroll', onScroll, { passive:true });
+
+const mobileToggle = document.getElementById('mobileToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+const menuOpen = document.getElementById('menuIconOpen');
+const menuClose = document.getElementById('menuIconClose');
+mobileToggle.addEventListener('click', ()=>{
+  const open = mobileMenu.classList.toggle('open');
+  menuOpen.style.display = open ? 'none' : 'block';
+  menuClose.style.display = open ? 'block' : 'none';
+});
+mobileMenu.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=>{
+  mobileMenu.classList.remove('open'); menuOpen.style.display='block'; menuClose.style.display='none';
+}));
+
+/* ====================== Language dropdown ====================== */
+const langWrap = document.getElementById('langWrap');
+const langBtn = document.getElementById('langBtn');
+const langMenu = document.getElementById('langMenu');
+langBtn.addEventListener('click', (e)=>{ e.stopPropagation(); langMenu.classList.toggle('open'); });
+document.getElementById('langBtnMobile').addEventListener('click', ()=>{
+  setLocale(locale === 'en' ? 'fr' : 'en');
+});
+document.addEventListener('click', (e)=>{ if(!langWrap.contains(e.target)) langMenu.classList.remove('open'); });
+document.querySelectorAll('.lang-item').forEach(btn=>{
+  btn.addEventListener('click', ()=>{ setLocale(btn.dataset.locale); langMenu.classList.remove('open'); });
+});
+
+/* ====================== Scroll reveal ====================== */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('in-view');
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold:0.18, rootMargin:'-40px' });
+
+document.querySelectorAll('.reveal, .stagger-group, .pulse-svg, .dash-wrap').forEach(el=> io.observe(el));
+
+/* Hero title reveal plays immediately on load (above the fold) */
+window.addEventListener('load', ()=>{
+  document.querySelectorAll('.reveal-line').forEach((el,i)=>{
+    setTimeout(()=> el.classList.add('in-view'), 150 + i*120);
+  });
+});
+
+/* ====================== Parallax on hero glow ====================== */
+const heroGlow = document.getElementById('heroGlow');
+const heroSection = document.getElementById('hero');
+let ticking = false;
+window.addEventListener('scroll', ()=>{
+  if(!ticking){
+    requestAnimationFrame(()=>{
+      const rect = heroSection.getBoundingClientRect();
+      const progress = Math.min(Math.max(-rect.top / Math.max(rect.height,1), 0), 1);
+      heroGlow.style.transform = 'translateY(' + (progress * 120) + 'px)';
+      heroGlow.style.opacity = String(1 - progress * 0.8);
+      ticking = false;
+    });
+    ticking = true;
+  }
+}, { passive:true });
+
+/* ====================== Footer year ====================== */
+document.getElementById('footerYear').textContent = '© ' + new Date().getFullYear();
+
+/* ====================== CTA -> #demo wiring ====================== */
+function scrollToDemo(){
+  const target = document.getElementById('demo');
+  if(target) target.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+['navTryDemoBtn','mobileTryDemoBtn','heroTryDemoBtn','finalTryDemoBtn'].forEach(id=>{
+  const el = document.getElementById(id);
+  if(el) el.addEventListener('click', scrollToDemo);
+});
+function scrollToHow(){
+  const target = document.getElementById('how');
+  if(target) target.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+['heroSeeHowBtn','finalSeeHowBtn'].forEach(id=>{
+  const el = document.getElementById(id);
+  if(el) el.addEventListener('click', scrollToHow);
+});
+
+/* ====================== Interactive Demo ====================== */
+function formatAmount(n){
+  return new Intl.NumberFormat(locale === 'fr' ? 'fr-FR' : 'en-US').format(n);
+}
+function formatDate(dateStr){
+  const d = new Date(dateStr + 'T00:00:00');
+  if (isNaN(d.getTime())) return dateStr;
+  return d.toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', { year:'numeric', month:'short', day:'numeric' });
+}
+function daysOverdueFrom(dateStr){
+  const due = new Date(dateStr + 'T00:00:00');
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const diff = Math.round((today - due) / 86400000);
+  return diff; // can be negative if not yet due
+}
+function riskFromDays(days){
+  if (days <= 0) return 'low';
+  if (days <= 14) return 'medium';
+  return 'high';
+}
+function oddsFromDays(days){
+  if (days <= 0) return 96;
+  if (days <= 7) return 90;
+  if (days <= 14) return 78;
+  if (days <= 30) return 61;
+  return 42;
+}
+function suggestedToneFromDays(days){
+  if (days <= 3) return 'soft';
+  if (days <= 21) return 'normal';
+  return 'firm';
+}
+
+function renderDemoOutput(input){
+  const d = dict[locale];
+  const days = daysOverdueFrom(input.dueDate);
+  const daysDisplay = days > 0 ? days : 0;
+  const risk = riskFromDays(days);
+  const odds = oddsFromDays(days);
+  const suggested = suggestedToneFromDays(days);
+  const activeTone = input.activeTone || input.tone || suggested;
+
+  document.getElementById('demoEmptyState').style.display = 'none';
+  const out = document.getElementById('demoOutput');
+  out.classList.add('visible');
+
+  document.getElementById('outClient').textContent = input.client;
+  document.getElementById('outAmount').textContent = '€' + formatAmount(input.amount);
+  document.getElementById('outDueDate').textContent = formatDate(input.dueDate);
+  document.getElementById('outDays').textContent = daysDisplay;
+
+  document.getElementById('outRisk').textContent = d.demo.risk[risk];
+  document.getElementById('outOdds').textContent = odds + '%';
+  document.getElementById('outSuggested').textContent = d.demo.tones[suggested].label;
+
+  // Tabs
+  const tabsEl = document.getElementById('demoTabs');
+  tabsEl.innerHTML = '';
+  ['soft','normal','firm'].forEach(key=>{
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'demo-tab' + (key === activeTone ? ' active' : '');
+    btn.textContent = d.demo.tones[key].label;
+    btn.addEventListener('click', ()=>{
+      input.activeTone = key;
+      renderDemoOutput(input);
+    });
+    tabsEl.appendChild(btn);
+  });
+
+  // Email body
+  const toneData = d.demo.tones[activeTone];
+  const body = toneData.body
+    .replace('{client}', input.client)
+    .replace('{amount}', formatAmount(input.amount))
+    .replace(/{dueDate}/g, formatDate(input.dueDate))
+    .replace(/{days}/g, daysDisplay);
+  document.getElementById('demoEmailBody').textContent = body;
+
+  // Timeline
+  const tl = d.demo.timelineLabels;
+  const items = [
+    { label: tl.invoiceAdded, done: true },
+    { label: tl.softSent, done: days >= 3 },
+    { label: tl.normalSent, done: days >= 14 },
+    { label: tl.firmSent, done: days >= 30 },
+    { label: tl.nextAction, done: false }
+  ];
+  document.getElementById('demoTimeline').innerHTML = items.map(item=>
+    `<div class="demo-timeline-item${item.done ? ' done' : ''}"><span class="demo-timeline-dot"></span><span>${item.label}</span></div>`
+  ).join('');
+
+  window.__paypulseLastDemoInput = input;
+}
+
+const demoForm = document.getElementById('demoForm');
+if (demoForm) {
+  demoForm.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const client = document.getElementById('demoClientName').value.trim();
+    const amount = parseFloat(document.getElementById('demoAmount').value);
+    const dueDate = document.getElementById('demoDueDate').value;
+    const tone = document.getElementById('demoTone').value;
+
+    if (!client || !amount || !dueDate) return;
+
+    renderDemoOutput({ client, amount, dueDate, tone, activeTone: tone });
+
+    document.getElementById('demoOutput').scrollIntoView({ behavior:'smooth', block:'nearest' });
+  });
+}
+
+/* ====================== Init ====================== */
+applyLocale();
+</script>
+</body>
+</html>
